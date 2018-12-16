@@ -18,13 +18,14 @@ router.use(Session({
 }));
 
 
-router.use('/', function (req, res) {
+router.get('/', function (req, res) {
     var url = getAuthUrl();
+    console.log(url);
     res.send('<a href="' + url + '">Zaloguj się</a>');
 })
 
 
-router.use("/oauthCallback", function (req, res) {
+router.get("/oauthCallback", function (req, res) {
     var oauth2Client = getOAuthClient();
     var session = req.session;
     var code = req.query.code; // the query param code
@@ -44,7 +45,7 @@ router.use("/oauthCallback", function (req, res) {
 });
 
 
-router.use("/details", function (req, res) {
+router.get("/details", function (req, res) {
     var oauth2Client = getOAuthClient();
     oauth2Client.setCredentials(req.session["tokens"]);
 
@@ -54,15 +55,15 @@ router.use("/details", function (req, res) {
         });
     }).then(function (data) {
         if (data && data.data && data.data.displayName) {
-            res.send(`Hello ` + data.data.displayName);
+            res.send(`Hello ` + data.data.displayName + '<br> Twoj access_token: ' + req.session.tokens.access_token);
         } else {
-            res.send(`Nie jestes zalogowany -- zrob redirect `);
+            res.send(`Nie jestes zalogowany -- zrob redirect  :  <a href="`+getAuthUrl()+`"> Zaloguj sie </a>`);
         }
     })
 });
 
 
-router.use("/logout", function (req, res) {
+router.get("/logout", function (req, res) {
     req.session.tokens = null;
     res.send('<h2>wylogowales sie</h2>');
 })
