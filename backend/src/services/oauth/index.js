@@ -57,7 +57,11 @@ router.get("/details", function (req, res) {
         if (data && data.data && data.data.displayName) {
             res.send(`Hello ` + data.data.displayName + '<br> Twoj access_token: ' + req.session.tokens.access_token);
         } else {
-            res.send(`Nie jestes zalogowany -- zrob redirect  :  <a href="`+getAuthUrl()+`"> Zaloguj sie </a>`);
+            if(req.session.tokens && req.session.tokens.access_token){
+                res.send('Twoj access_token: ' + req.session.tokens.access_token);
+            }else {
+                res.send(`Nie jestes zalogowany -- zrob redirect  :  <a href="` + getAuthUrl() + `"> Zaloguj sie </a>`);
+            }
         }
     })
 });
