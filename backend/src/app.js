@@ -9,7 +9,6 @@ const mongoose = require('./services/mongoose')
 const app = express(apiRoot, api)
 const server = http.createServer(app)
 const password = process.env.PASSWORD
-console.log(password)
 const dbURI = `mongodb+srv://projectieUser:${password}@projectie-794rj.mongodb.net/test?retryWrites=true`
 
 const options = {
