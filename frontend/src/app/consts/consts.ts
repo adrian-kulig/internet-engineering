@@ -8,4 +8,7 @@ export class Consts{
   static User = class {
     static USERS = "/users";
   }
+  static Oauth = class{
+    static OAUTH = "/oauth";
+  }
 }

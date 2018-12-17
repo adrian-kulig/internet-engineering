@@ -9,9 +9,14 @@ const routes: Routes = [
     component: UserComponent
   },
   {
+    path: 'oauth',
+    component: UserComponent
+  },
+  {
     path: 'offers',
     component: OfferComponent
-  }
+  },
+
 ];
 
 @NgModule({

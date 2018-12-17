@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { OfferService } from '../services/offer/offer.service';
-import { Offer } from '../models/offer';
+import {Component, OnInit} from '@angular/core';
+import {OfferService} from '../services/offer/offer.service';
+import {Offer} from '../models/offer';
 
 @Component({
   selector: 'app-offer',
@@ -9,17 +9,26 @@ import { Offer } from '../models/offer';
 })
 export class OfferComponent implements OnInit {
 
-  constructor(private offerService: OfferService) { }
+  constructor(private offerService: OfferService) {
+  }
 
   public newOffer: Offer = new Offer();
   offerList: Offer[];
+  test : string;
 
   ngOnInit() {
     this.offerService.getOffers()
-    .subscribe(offers => {
-      this.offerList = offers;
-      console.log(offers);
-    })
+      .subscribe(offers => {
+        this.offerList = offers;
+        console.log(offers);
+      })
+
+    // this.offerService.getTestUrl()
+    //   .subscribe(offers => {
+    //     this.offerList = offers;
+    //     console.log(offers);
+    //   })
   }
+
 
 }

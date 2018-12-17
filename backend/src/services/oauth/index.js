@@ -20,7 +20,7 @@ router.use(Session({
 
 router.get('/', function (req, res) {
     var url = getAuthUrl();
-    console.log(url);
+    res.send([{"url" : url}])
     res.send('<a href="' + url + '">Zaloguj się</a>');
 })
 
@@ -72,6 +72,9 @@ router.get("/logout", function (req, res) {
     res.send('<h2>wylogowales sie</h2>');
 })
 
+router.get("/test", function (req,res) {
+    res.send([{'loginUrl' : 'mojloginadres'}]);
+})
 
 function getOAuthClient() {
     return new OAuth2(ClientId, ClientSecret, RedirectionUrl);
