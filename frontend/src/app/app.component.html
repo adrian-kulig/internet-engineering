@@ -6,17 +6,22 @@
 </div>
 <div *ngIf="loggedIn" class="logged-in">
   You are logged in.
-  
+
   <div class="account-balance-wrapper">
     <div *ngIf="accountBalance">
       Your balance is: {{accountBalance?.balance}}$
     </div>
+    <div *ngIf="offers">
+      <h2>Oferty pracy</h2>
+      <div *ngFor="let offer of offers"> {{offer.name}}</div>
+    </div>
     <br>
     <div>
       <button (click)="getBalance()">Get Account Balance</button>
+      <button (click)="getOffers()">Get Offers</button>
     </div>
   </div>
-  
+
   <button (click)="doLogout()">Log Out</button>
-  
+
 </div>

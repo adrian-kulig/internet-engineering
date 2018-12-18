@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthService} from './services/auth/auth.service';
 import {AccountBalanceService} from './services/account/account-balance.service';
+import {OfferService} from './services/offer/offer.service';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +14,21 @@ export class AppComponent {
   password = '1234';
   loggedIn;
   accountBalance;
+  offers;
+
 
   constructor(private authService: AuthService,
-              private balanceService: AccountBalanceService) {
+              private balanceService: AccountBalanceService,
+              private offerService: OfferService) {
     this.authService.loggedIn.subscribe(loggedIn => {
       this.loggedIn = loggedIn;
     });
     this.balanceService.accountBalance.subscribe(balance => {
       this.accountBalance = balance;
     });
+    this.offerService.offer.subscribe(offers =>{
+      this.offers = offers;
+    })
   }
 
   doLogin() {
@@ -34,6 +41,10 @@ export class AppComponent {
 
   getBalance() {
     this.balanceService.getAccountBalance();
+  }
+
+  getOffers(){
+   this.offerService.getOffers();
   }
 
 }

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AuthService} from './services/auth/auth.service';
+import {OfferService} from './services/offer/offer.service';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AccountBalanceService} from './services/account/account-balance.service';
@@ -16,7 +17,6 @@ import {AccountBalanceService} from './services/account/account-balance.service'
   declarations: [
     AppComponent,
     OfferComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -27,7 +27,8 @@ import {AccountBalanceService} from './services/account/account-balance.service'
   ],
   providers: [
     AuthService,
-    AccountBalanceService
+    AccountBalanceService,
+    OfferService
   ],
   bootstrap: [AppComponent]
 })
