@@ -1,30 +1,35 @@
 {
-  "name": "project-template",
-  "version": "1.0.0",
-  "description": "Projekt zaliczeniowy - Inzynieria Internetu",
-  "main": "src",
+  "name": "session-backend",
+  "version": "0.0.0",
+  "description": "Node.js backend for sessions (with Express)",
+  "main": "app.js",
   "scripts": {
-    "start": "node .",
-    "dev": "nodemon --inspect=9229 -i \"*.test.js\" ."
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon",
+    "kill": "lsof -t -i tcp:3000 | xargs kill"
   },
-  "author": "Adrian&Damian :)",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bersling/express-session-angular-ngx.git"
+  },
+  "keywords": [
+    "Express",
+    "Node.js"
+  ],
+  "author": "Daniel Niederberger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bersling/express-session-angular-ngx/issues"
+  },
+  "homepage": "https://github.com/bersling/express-session-angular-ngx#readme",
   "dependencies": {
-    "bcrypt": "^3.0.2",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.18.2",
     "cors": "^2.8.5",
-    "express": "^4.16.4",
+    "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "googleapis": "^36.0.0",
-    "jsonwebtoken": "^8.4.0",
-    "lodash": "^4.17.11",
-    "mongoose": "^5.3.10",
-    "oauth2-server": "^3.0.1",
-    "passport": "^0.4.0",
-    "passport-http": "^0.3.0",
-    "passport-jwt": "^4.0.0"
+    "mongoose": "^5.3.10"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.9"
   }
 }

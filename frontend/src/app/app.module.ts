@@ -1,29 +1,33 @@
-import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { OfferComponent } from './offer/offer.component';
+
 
 import { AppComponent } from './app.component';
-import { OfferComponent } from './offer/offer.component';
-import { UserComponent } from './user/user.component';
-import { AppRoutingModule } from './app-routing.module';
-import { OfferService } from './services/offer/offer.service';
-import { NavbarComponent } from './navbar/navbar.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {AuthService} from './services/auth/auth.service';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AccountBalanceService} from './services/account/account-balance.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     OfferComponent,
-    UserComponent,
-    NavbarComponent
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
-    OfferService,
-    Title
+    AuthService,
+    AccountBalanceService
   ],
   bootstrap: [AppComponent]
 })

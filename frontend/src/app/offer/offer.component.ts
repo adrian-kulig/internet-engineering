@@ -7,6 +7,7 @@ import {Offer} from '../models/offer';
   templateUrl: './offer.component.html',
   styleUrls: ['./offer.component.css']
 })
+
 export class OfferComponent implements OnInit {
 
   constructor(private offerService: OfferService) {

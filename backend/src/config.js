@@ -7,7 +7,7 @@ const config = {
     all: {
         env: process.env.NODE_ENV || 'development',
         root: path.join(__dirname, '..'),
-        port: 9001,
+        port: 3000,
         ip: 'localhost',
         apiRoot: '/api',
         mongo: {

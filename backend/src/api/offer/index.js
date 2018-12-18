@@ -1,21 +1,21 @@
 const { Router } = require('express')
 const { create, index, show, update, destroy } = require('./controller')
 
-const router = new Router()
+const app = new Router();
 
-router.post('/',
+app.post('/',
   create)
 
-router.get('/',
+app.get('/',
   index)
 
-router.get('/:id',
+app.get('/:id',
   show)
 
-router.put('/:id',
+app.put('/:id',
   update)
 
-router.delete('/:id',
+app.delete('/:id',
   destroy)
 
-module.exports = router
+module.exports = app

@@ -1,15 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {AuthService} from './services/auth/auth.service';
+import {AccountBalanceService} from './services/account/account-balance.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
 
-  constructor(){}
+  email = 'max@gmail.com';
+  password = '1234';
+  loggedIn;
+  accountBalance;
 
-  ngOnInit(){
-
+  constructor(private authService: AuthService,
+              private balanceService: AccountBalanceService) {
+    this.authService.loggedIn.subscribe(loggedIn => {
+      this.loggedIn = loggedIn;
+    });
+    this.balanceService.accountBalance.subscribe(balance => {
+      this.accountBalance = balance;
+    });
   }
+
+  doLogin() {
+    this.authService.doLogin(this.email, this.password);
+  }
+
+  doLogout() {
+    this.authService.logout();
+  }
+
+  getBalance() {
+    this.balanceService.getAccountBalance();
+  }
+
 }
