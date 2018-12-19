@@ -18,11 +18,7 @@ export class OfferComponent implements OnInit {
   test : string;
 
   ngOnInit() {
-    this.offerService.getOffers()
-      .subscribe(offers => {
-        this.offerList = offers;
-        console.log(offers);
-      })
+    this.offerService.getOffers();
   }
 
 
