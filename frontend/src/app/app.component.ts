@@ -3,6 +3,7 @@ import {AuthService} from './services/auth/auth.service';
 import {AccountBalanceService} from './services/account/account-balance.service';
 import {OfferService} from './services/offer/offer.service';
 import {UserService} from "./services/user/user.service";
+import {User} from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +12,13 @@ import {UserService} from "./services/user/user.service";
 })
 export class AppComponent {
 
-  email = 'max@gmail.com';
-  password = '1234';
-  user_email = '';
-  user_name ='';
-  user_password = '';
-  loggedIn;
+  // email = 'max@gmail.com';
+  // password = '1234';
+  // user_email = '';
+  // user_name ='';
+  // user_password = '';
+  // loggedIn;
+  user: User;
   accountBalance;
   offers;
   userList;
@@ -27,7 +29,7 @@ export class AppComponent {
               private userService: UserService,
               private offerService: OfferService) {
     this.authService.loggedIn.subscribe(loggedIn => {
-      this.loggedIn = loggedIn;
+      this.user.loggedIn = loggedIn;
     });
     this.balanceService.accountBalance.subscribe(balance => {
       this.accountBalance = balance;
@@ -41,7 +43,7 @@ export class AppComponent {
   }
 
   doLogin() {
-    this.authService.doLogin(this.email, this.password);
+    this.authService.doLogin(this.user.email, this.user.password);
   }
 
   doLogout() {
@@ -61,7 +63,7 @@ export class AppComponent {
   }
 
   registerAction(){
-    this.authService.registerAction(this.user_name, this.user_email, this.user_password);
+    this.authService.registerAction(this.user.name, this.user.email, this.user.password);
   }
 
 }

@@ -1,13 +1,21 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
-import { environment } from '../../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
 
   loggedIn: Subject<boolean>;
+
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService
+  ) {
+    this.loggedIn = new Subject();
+    this.getLogin();
+  }
 
   doLogin(email: string, password: string) {
     this.http.post(environment.apiUrl + '/login', {
@@ -60,14 +68,6 @@ export class AuthService {
       this.loggedIn.next(false);
       errorResp.error ? this.toastr.error(errorResp.error.errorMessage) : this.toastr.error('An unknown error has occured.');
     });
-  }
-
-  constructor(
-    private http: HttpClient,
-    private toastr: ToastrService
-  ) {
-    this.loggedIn = new Subject();
-    this.getLogin();
   }
 
 }
