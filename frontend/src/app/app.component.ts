@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AuthService} from './services/auth/auth.service';
 import {AccountBalanceService} from './services/account/account-balance.service';
 import {OfferService} from './services/offer/offer.service';
+import {UserService} from "./services/user/user.service";
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,12 @@ export class AppComponent {
   loggedIn;
   accountBalance;
   offers;
+  userList;
 
 
   constructor(private authService: AuthService,
               private balanceService: AccountBalanceService,
+              private userService: UserService,
               private offerService: OfferService) {
     this.authService.loggedIn.subscribe(loggedIn => {
       this.loggedIn = loggedIn;
@@ -28,6 +31,9 @@ export class AppComponent {
     });
     this.offerService.offer.subscribe(offers =>{
       this.offers = offers;
+    })
+    this.userService.userList.subscribe(users =>{
+      this.userList = users;
     })
   }
 
@@ -45,6 +51,10 @@ export class AppComponent {
 
   getOffers(){
    this.offerService.getOffers();
+  }
+
+  getUsers(){
+    this.userService.getUserList();
   }
 
 }

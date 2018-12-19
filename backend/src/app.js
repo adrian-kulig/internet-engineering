@@ -180,7 +180,9 @@ app.get('/api/balance', authMiddleware, (req, res) => {
 });
 
 const offers = require('./api/offer');
+const users = require('./api/user');
 app.use('/api/offers', offers);
+app.use('/api/users', users);
 
 
 /**

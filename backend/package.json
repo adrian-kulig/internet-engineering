@@ -1,7 +1,7 @@
 {
-  "name": "session-backend",
+  "name": "IE",
   "version": "0.0.0",
-  "description": "Node.js backend for sessions (with Express)",
+  "description": "Projekt zaliczeniowy IE",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,24 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bersling/express-session-angular-ngx.git"
+    "url": "git+https://github.com/adrian-kulig/internet-engineering.git"
   },
-  "keywords": [
-    "Express",
-    "Node.js"
-  ],
-  "author": "Daniel Niederberger",
+  "author": "Adrian&Damian",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bersling/express-session-angular-ngx/issues"
-  },
-  "homepage": "https://github.com/bersling/express-session-angular-ngx#readme",
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.2",
     "cors": "^2.8.5",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "mongoose": "^5.3.10"
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.3.10",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

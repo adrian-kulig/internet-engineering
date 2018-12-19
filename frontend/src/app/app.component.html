@@ -15,10 +15,16 @@
       <h2>Oferty pracy</h2>
       <div *ngFor="let offer of offers"> {{offer.name}}</div>
     </div>
+
+    <div class="users">
+      <div *ngFor="let user of userList"> {{user.name}} {{user.email}}</div>
+
+    </div>
     <br>
     <div>
       <button (click)="getBalance()">Get Account Balance</button>
       <button (click)="getOffers()">Get Offers</button>
+      <button (click)="getUsers()">Get Users</button>
     </div>
   </div>
 

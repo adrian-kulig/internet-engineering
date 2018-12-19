@@ -17,6 +17,7 @@ export class AuthService {
       withCredentials: true
     }).subscribe((resp: any) => {
       this.loggedIn.next(true);
+      //TODO pobrać token i zapisac go do sesji
       this.toastr.success(resp && resp.user && resp.user.name ? `Welcome ${resp.user.name}` : 'Logged in!');
     }, (errorResp) => {
       this.loggedIn.next(false);
