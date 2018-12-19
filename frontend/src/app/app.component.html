@@ -31,3 +31,13 @@
   <button (click)="doLogout()">Log Out</button>
 
 </div>
+
+
+<div class="register--box">
+  <input type="text" placeholder="name" [(ngModel)]="user_name">
+  <input type="email" placeholder="email" [(ngModel)]="user_email">
+  <input type="password" placeholder="password" [(ngModel)]="user_password">
+  <button (click)="registerAction()">Register</button>
+
+</div>
+

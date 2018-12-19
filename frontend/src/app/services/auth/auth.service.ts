@@ -43,6 +43,24 @@ export class AuthService {
     });
   }
 
+  registerAction(name: string, email: string, password: string) {
+    this.http.post(environment.apiUrl + '/users', {
+      name: name,
+      email: email,
+      password: password,
+      role: ["user"]
+    }, {
+      withCredentials: true
+    }).subscribe((resp: any) => {
+      this.loggedIn.next(true);
+      console.log(resp);
+      //TODO pobrać token i zapisac go do sesji
+      // this.toastr.success(resp && resp.user && resp.user.name ? `Welcome ${resp.user.name}` : 'Logged in!');
+    }, (errorResp) => {
+      this.loggedIn.next(false);
+      errorResp.error ? this.toastr.error(errorResp.error.errorMessage) : this.toastr.error('An unknown error has occured.');
+    });
+  }
 
   constructor(
     private http: HttpClient,

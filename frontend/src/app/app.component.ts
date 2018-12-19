@@ -13,6 +13,9 @@ export class AppComponent {
 
   email = 'max@gmail.com';
   password = '1234';
+  user_email = '';
+  user_name ='';
+  user_password = '';
   loggedIn;
   accountBalance;
   offers;
@@ -55,6 +58,10 @@ export class AppComponent {
 
   getUsers(){
     this.userService.getUserList();
+  }
+
+  registerAction(){
+    this.authService.registerAction(this.user_name, this.user_email, this.user_password);
   }
 
 }
