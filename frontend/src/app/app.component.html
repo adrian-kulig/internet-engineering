@@ -28,12 +28,12 @@
     </ul>
     <div class="login--box">
 
-      <div *ngIf="loggedIn === false" class="logged-out">
+      <div *ngIf="user.loggedIn === false" class="logged-out">
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#userLoginModal">Zaloguj się</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userActionModal">Zarejestruj się</button>
       </div>
 
-      <div *ngIf="loggedIn" class="logged-in">
+      <div *ngIf="user.loggedIn" class="logged-in">
         <button class="btn btn-outline-success" (click)="doLogout()">Wyloguj się</button>
       </div>
 
@@ -42,105 +42,69 @@
   </div>
 </nav>
 
-<div class="modal fade" id="userActionModal" tabindex="-1" role="dialog" aria-labelledby="userActions" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-
-      <div *ngIf="loggedIn === false">
-        <div class="modal-header">
-          <h5 class="modal-title" id="userActions">Rejestracja</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="register--box">
-            <input class="form-control" type="text" placeholder="name" [(ngModel)]="user_name"><br>
-            <input class="form-control" type="email" placeholder="email" [(ngModel)]="user_email"><br>
-            <input class="form-control" type="password" placeholder="password" [(ngModel)]="user_password">
+<form #registrationForm="ngForm" (ngSubmit)="registerAction(); registrationForm.reset()">
+  <div class="modal fade" id="userActionModal" tabindex="-1" role="dialog" aria-labelledby="userActions" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div *ngIf="user.loggedIn === false">
+          <div class="modal-header">
+            <h5 class="modal-title" id="userActions">Rejestracja</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="form-group">
+            <div class="modal-body">
+              <div class="register--box">
+                <input required ngModel #registration_name="ngModel" name="registration_name" id="registration_name" class="form-control" type="text" placeholder="name" [(ngModel)]="user.name"><br>
+                <div class="alert alert-danger" *ngIf="registration_name.touched && !registration_name.valid">Name is required</div>
+                <input ngModel email #registration_email="ngModel" name="registration_email" id="registration_email" class="form-control" type="email" placeholder="email" [(ngModel)]="user.email"><br>
+                <div class="alert alert-danger" *ngIf="registration_email.touched && !registration_email.valid">Email is required</div>
+                <!--TODO check pattern of the email-->
+                <input naModel name="registration_password" id="registration_password" class="form-control" type="password" placeholder="password" [(ngModel)]="user.password">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="submit" class="btn btn-primary">Zarejestruj się</button>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-          <button type="button" class="btn btn-primary" (click)="registerAction()">Zarejestruj się</button>
-        </div>
       </div>
-
     </div>
   </div>
-</div>
+</form>
 
-<div class="modal fade" id="userLoginModal" tabindex="-1" role="dialog" aria-labelledby="userLoginAction" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-
-      <div *ngIf="loggedIn === false">
-        <div class="modal-header">
-          <h5 class="modal-title" id="userLoginAction">Logowanie</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(); loginForm.reset()" novalidate>
+    <div class="modal fade" id="userLoginModal" tabindex="-1" role="dialog" aria-labelledby="userLoginAction" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div *ngIf="user.loggedIn === false">
+              <div class="modal-header">
+                <h5 class="modal-title" id="userLoginAction">Logowanie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+                <div class="form-group">
+                  <div class="modal-body">
+                    <div class="register--box">
+                      <input ngModel required #email="ngModel" name="email" id="email" class="form-control" type="text" placeholder="Email" [(ngModel)]="user.email"><br>
+                      <div class="alert alert-danger" *ngIf="email.touched && !email.valid">Email is required</div>
+                      <input ngModel name="password" id="password" class="form-control" type="text" placeholder="Password" [(ngModel)]="user.password"><br>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                  <button type="submit" class="btn btn-success">Zaloguj się</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="register--box">
-            <input class="form-control" type="text" placeholder="Email" [(ngModel)]="email"><br>
-            <input class="form-control" type="text" placeholder="Password" [(ngModel)]="password"><br>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-          <button type="button" class="btn btn-primary" (click)="doLogin()">Zaloguj się</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<main role="main">
-
-  <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">Hello, world!</h1>
-      <p>This is a template for a simple marketing or informational website. It includes a large callout called a
-        jumbotron and three supporting pieces of content. Use it as a starting point to create something more
-        unique.</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-    </div>
-  </div>
-
-  <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-          Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-          Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta
-          felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-          massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
       </div>
     </div>
+ </form>
 
-    <hr>
-
-  </div> <!-- /container -->
-
-</main>
 
 <footer class="container">
   <p>&copy; Company 2017-2018</p>

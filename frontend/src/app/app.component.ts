@@ -17,8 +17,8 @@ export class AppComponent {
   // user_email = '';
   // user_name ='';
   // user_password = '';
-  // loggedIn;
-  user: User;
+  // loggedIn: boolean;
+  user: User = new User();
   accountBalance;
   offers;
   userList;
@@ -66,4 +66,7 @@ export class AppComponent {
     this.authService.registerAction(this.user.name, this.user.email, this.user.password);
   }
 
+  onSubmit() {
+    this.doLogin();
+  }
 }
