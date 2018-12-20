@@ -1,8 +1,7 @@
-import { Roles } from "../consts/roles";
-
 export class User {
-  email: String;
-  password: String;
-  name: String;
-  role: Roles;
+  email: string;
+  password: string;
+  name: string;
+  lastName: string;
+  loggedIn: boolean;
 }
