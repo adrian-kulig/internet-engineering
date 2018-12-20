@@ -101,20 +101,41 @@ const validatePayloadMiddleware = (req, res, next) => {
  * If pw and email match, the user is fetched and stored into the session.
  * Finally the user is returned from the request.
  */
+const User = require('./api/user/model').model;
 app.post('/api/login', validatePayloadMiddleware, (req, res) => {
-    const user = appUsers[req.body.email];
-    if (user && user.pw === req.body.password) {
-        const userWithoutPassword = {...user};
-        delete userWithoutPassword.pw;
-        req.session.user = userWithoutPassword;
-        res.status(200).send({
-            user: userWithoutPassword
-        });
-    } else {
-        res.status(403).send({
-            errorMessage: 'Permission denied!'
-        });
-    }
+    User.findOne({email:req.body.email},function (err, user) {
+        if(user){
+            user.authenticate(req.body.password, user.password).then((authenticatedUser) => {
+                if(authenticatedUser){
+                    req.session.user = authenticatedUser;
+                    res.status(200).send({
+                        user: authenticatedUser
+                    });
+                }else{
+                    res.status(403).send({
+                        errorMessage: 'Błędne hasło'
+                    });
+                }
+            })
+        }else{
+            res.status(403).send({
+                errorMessage: 'Nie ma takiego użytkownika!'
+            });
+        }
+    });
+    // const user = appUsers[req.body.email];
+    // if (user && user.pw === req.body.password) {
+    //     const userWithoutPassword = {...user};
+    //     delete userWithoutPassword.pw;
+    //     req.session.user = userWithoutPassword;
+    //     res.status(200).send({
+    //         user: userWithoutPassword
+    //     });
+    // } else {
+    //     res.status(403).send({
+    //         errorMessage: 'Permission denied!'
+    //     });
+    // }
 });
 
 /**
