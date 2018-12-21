@@ -14,6 +14,7 @@ router.get('/me',
   token({ required: true }),
   showMe)
 
+
 router.get('/:id',
   token({ required: true, roles: ['admin'] }),
   show)

@@ -3,7 +3,8 @@ const session = require('express-session');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('./services/mongoose')
-
+const User = require('./api/user/model').model;
+const {sign} = require('./services/jwt')
 
 /**
  * Creating a new express app
@@ -13,9 +14,11 @@ const app = express();
 /**
  * Setting up CORS, such that it can work together with an Application at another domain / port
  */
-app.use(cors({origin: [
+app.use(cors({
+    origin: [
         "http://localhost:4736"
-    ], credentials: true}));
+    ], credentials: true
+}));
 
 /**
  * For being able to read request bodies
@@ -52,28 +55,11 @@ mongoose.connect(dbURI, options).then(
 );
 
 
-
-/**
- * Some hardcoded users to make the demo work
- */
-const appUsers = {
-    'max@gmail.com': {
-        email: 'max@gmail.com',
-        name: 'Max Miller',
-        pw: '1234' // YOU DO NOT WANT TO STORE PW's LIKE THIS IN REAL LIFE - HASH THEM FOR STORAGE
-    },
-    'lily@gmail.com': {
-        email: 'lily@gmail.com',
-        name: 'Lily Walter',
-        pw: '1235' // YOU DO NOT WANT TO STORE PW's LIKE THIS IN REAL LIFE - HASH THEM FOR STORAGE
-    }
-};
-
 /**
  * Simple session example from tutorials point, unrelated to rest of the application.
  */
-app.get('/api', function(req, res){
-    if(req.session.page_views){
+app.get('/api', function (req, res) {
+    if (req.session.page_views) {
         req.session.page_views++;
         res.send("You visited this page " + req.session.page_views + " times");
     } else {
@@ -101,41 +87,31 @@ const validatePayloadMiddleware = (req, res, next) => {
  * If pw and email match, the user is fetched and stored into the session.
  * Finally the user is returned from the request.
  */
-const User = require('./api/user/model').model;
+
 app.post('/api/login', validatePayloadMiddleware, (req, res) => {
-    User.findOne({email:req.body.email},function (err, user) {
-        if(user){
+    User.findOne({email: req.body.email}, function (err, user) {
+        if (user) {
             user.authenticate(req.body.password, user.password).then((authenticatedUser) => {
-                if(authenticatedUser){
-                    req.session.user = authenticatedUser;
-                    res.status(200).send({
-                        user: authenticatedUser
-                    });
-                }else{
+                if (authenticatedUser) {
+                    sign(user)
+                        .then((token) => ({token, user: user.view(true)}))
+                        .then(function (data) {
+                            req.session.token = data.token;
+                            req.session.user = data.user;
+                            res.status(200).send({token: data.token, user: data.user})
+                        })
+                } else {
                     res.status(403).send({
                         errorMessage: 'Błędne hasło'
                     });
                 }
             })
-        }else{
+        } else {
             res.status(403).send({
                 errorMessage: 'Nie ma takiego użytkownika!'
             });
         }
     });
-    // const user = appUsers[req.body.email];
-    // if (user && user.pw === req.body.password) {
-    //     const userWithoutPassword = {...user};
-    //     delete userWithoutPassword.pw;
-    //     req.session.user = userWithoutPassword;
-    //     res.status(200).send({
-    //         user: userWithoutPassword
-    //     });
-    // } else {
-    //     res.status(403).send({
-    //         errorMessage: 'Permission denied!'
-    //     });
-    // }
 });
 
 /**
@@ -162,7 +138,7 @@ app.post('/api/logout', (req, res) => {
  * Checks if user is logged in, by checking if user is stored in session.
  */
 const authMiddleware = (req, res, next) => {
-    if(req.session && req.session.user) {
+    if (req.session && req.session.user) {
         next();
     } else {
         res.status(403).send({

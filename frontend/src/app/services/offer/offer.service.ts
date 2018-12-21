@@ -7,13 +7,14 @@ import {environment} from '../../../environments/environment';
 
 import {ToastrService} from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 
 
 
-// interface Offer {
-//   Offer: object
-// }
+@Component({
+  selector: 'app-offer',
+  templateUrl: './offer.component.html',
+})
 @Injectable()
 export class OfferService {
 
@@ -39,7 +40,7 @@ export class OfferService {
               private toastr: ToastrService) {
     this.offer = new Subject();
     this.authService.loggedIn.subscribe(() => {
-      this.offer.next(null);
+      this.getOffers();
     });
   }
 
