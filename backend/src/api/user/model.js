@@ -7,20 +7,21 @@ const userSchema = new Schema({
   email: {
     type: String,
     match: /^\S+@\S+\.\S+$/,
-    required: true,
+    required: [true, "Email jest wymagany<br>"],
     unique: true,
     trim: true,
-    lowercase: true
+    lowercase: true,
   },
   password: {
     type: String,
-    required: true,
-    minlength: 6
+    required: [true, "Hasło jest wymagane<br>"],
+    minlength: [6, "Hasło wymaga minimum 6 znaków"]
   },
   name: {
     type: String,
     trim: true,
-    required: true
+    required: [true, "Nazwa użytkownika jest wymagana<br>"],
+    minlength: [4, "Nazwa użytkownika wymaga minimum 4 znaków"]
   },
   role: {
     type: String,
@@ -30,6 +31,9 @@ const userSchema = new Schema({
 }, {
   timestamps: true
 })
+
+
+
 
 userSchema.pre('save', function (next) {
   if (!this.isModified('password')) return next()

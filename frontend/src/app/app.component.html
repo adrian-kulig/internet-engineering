@@ -60,7 +60,7 @@
                 <input ngModel email #registration_email="ngModel" name="registration_email" id="registration_email" class="form-control" type="email" placeholder="email" [(ngModel)]="user.email"><br>
                 <div class="alert alert-danger" *ngIf="registration_email.touched && !registration_email.valid">Email is required</div>
                 <!--TODO check pattern of the email-->
-                <input naModel name="registration_password" id="registration_password" class="form-control" type="password" placeholder="password" [(ngModel)]="user.password">
+                <input ngModel name="registration_password" id="registration_password" class="form-control" type="password" placeholder="password" [(ngModel)]="user.password">
               </div>
             </div>
           </div>

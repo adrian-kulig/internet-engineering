@@ -66,7 +66,7 @@ export class AuthService {
       // this.toastr.success(resp && resp.user && resp.user.name ? `Welcome ${resp.user.name}` : 'Logged in!');
     }, (errorResp) => {
       this.loggedIn.next(false);
-      errorResp.error ? this.toastr.error(errorResp.error.errorMessage) : this.toastr.error('An unknown error has occured.');
+      errorResp.error ? this.toastr.error(errorResp.error.errorMessage,'Wystąpiły błędy',{ timeOut: 4000, progressBar: true, enableHtml:true}) : this.toastr.error('An unknown error has occured.');
     });
   }
 
