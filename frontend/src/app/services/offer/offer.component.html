@@ -1,0 +1,125 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+          aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <div class="login--box">
+
+      <div *ngIf="user.loggedIn === false" class="logged-out">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#userLoginModal">Zaloguj się</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userActionModal">Zarejestruj się</button>
+      </div>
+      <div *ngIf="user.loggedIn" class="logged-in">
+        <button class="btn btn-outline-success" (click)="doLogout()">Wyloguj się</button>
+      </div>
+
+    </div>
+
+  </div>
+</nav>
+
+<form #registrationForm="ngForm" (ngSubmit)="registerAction(); registrationForm.reset()">
+  <div class="modal fade" id="userActionModal" tabindex="-1" role="dialog" aria-labelledby="userActions" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div *ngIf="user.loggedIn === false">
+          <div class="modal-header">
+            <h5 class="modal-title" id="userActions">Rejestracja</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="form-group">
+            <div class="modal-body">
+              <div class="register--box">
+                <input required ngModel #registration_name="ngModel" name="registration_name" id="registration_name" class="form-control" type="text" placeholder="name" [(ngModel)]="user.name"><br>
+                <div class="alert alert-danger" *ngIf="registration_name.touched && !registration_name.valid">Name is required</div>
+                <input ngModel email #registration_email="ngModel" name="registration_email" id="registration_email" class="form-control" type="email" placeholder="email" [(ngModel)]="user.email"><br>
+                <div class="alert alert-danger" *ngIf="registration_email.touched && !registration_email.valid">Email is required</div>
+                <!--TODO check pattern of the email-->
+                <input naModel name="registration_password" id="registration_password" class="form-control" type="password" placeholder="password" [(ngModel)]="user.password">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(); loginForm.reset()" novalidate>
+    <div class="modal fade" id="userLoginModal" tabindex="-1" role="dialog" aria-labelledby="userLoginAction" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div *ngIf="user.loggedIn === false">
+              <div class="modal-header">
+                <h5 class="modal-title" id="userLoginAction">Logowanie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+                <div class="form-group">
+                  <div class="modal-body">
+                    <div class="register--box">
+                      <input ngModel required #email="ngModel" name="email" id="email" class="form-control" type="text" placeholder="Email" [(ngModel)]="user.email"><br>
+                      <div class="alert alert-danger" *ngIf="email.touched && !email.valid">Email is required</div>
+                      <input ngModel name="password" id="password" class="form-control" type="password" placeholder="Password" [(ngModel)]="user.password"><br>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                  <button type="submit" class="btn btn-success">Zaloguj się</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+ </form>
+
+
+<div class="app-content" style="margin-top:150px;">
+  <div class="container">
+
+    <div class="offer-content">
+      <div class="row">
+        <h3>Oferty: </h3>
+        <div class="col-md-12">Oferta 1</div>
+        {{offers}}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<footer class="container">
+  <p>&copy; Company 2017-2018</p>
+</footer>
