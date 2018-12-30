@@ -181,7 +181,6 @@ const users = require('./api/user');
 app.use('/api/offers', offers);
 app.use('/api/users', users);
 
-
 /**
  * Listen on port 3000
  */

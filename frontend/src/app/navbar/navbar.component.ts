@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Consts } from '../consts/consts';
 
 @Component({
   selector: 'app-navbar',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
+  consts = Consts;
 
   constructor() { }
 

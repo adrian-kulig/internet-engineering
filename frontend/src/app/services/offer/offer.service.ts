@@ -40,19 +40,19 @@ export class OfferService {
   }
 
   createOffer(offer: Offer): Observable<any> {
-    return this.http.post(Consts.Api.ROOT + Consts.Offer.OFFERS, offer);
+    return this.http.post(Consts.Api.ROOT + Consts.Offer.URL, offer);
   }
 
   getOffersA(): Observable<Offer[]> {
-    return this.http.get<Offer[]>(Consts.Api.ROOT + Consts.Offer.OFFERS);
+    return this.http.get<Offer[]>(Consts.Api.ROOT + Consts.Offer.URL);
   }
 
   getOfferById(id: string): Observable<any> {
-    return this.http.get(Consts.Offer.OFFERS + "/" + id);
+    return this.http.get(Consts.Offer.URL + "/" + id);
   }
 
   editOffer(offer: Offer) {
-    return this.http.put(Consts.Offer.OFFERS, offer);
+    return this.http.put(Consts.Offer.URL, offer);
   }
 
   deleteOffer(id: string): any {

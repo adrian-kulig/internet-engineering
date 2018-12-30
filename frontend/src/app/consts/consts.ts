@@ -3,7 +3,8 @@ export class Consts{
      static ROOT = 'http://localhost:3000/api';
   }
   static Offer = class {
-    static OFFERS = "/offers";
+    static URL = "/offers";
+    static TITLE = "OFFERS";
   }
   static User = class {
     static USERS = "/users";
