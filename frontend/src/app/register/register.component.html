@@ -1,0 +1,45 @@
+<form #registrationForm="ngForm" (ngSubmit)="registerAction(); registrationForm.reset()">
+  <div class="modal fade" id="userActionModal" tabindex="-1" role="dialog" aria-labelledby="userActions" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div *ngIf="user.loggedIn === false">
+          <div class="modal-header">
+            <h5 class="modal-title" id="userActions">Rejestracja</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="form-group">
+            <div class="modal-body">
+              <div class="register--box">
+                <input required ngModel #registration_name="ngModel" name="registration_name" id="registration_name" class="form-control" type="text" placeholder="name" [(ngModel)]="user.name"><br>
+                <div class="alert alert-danger" *ngIf="registration_name.touched && !registration_name.valid">Name is required</div>
+                <input ngModel email #registration_email="ngModel" name="registration_email" id="registration_email" class="form-control" type="email" placeholder="email" [(ngModel)]="user.email"><br>
+                <div class="alert alert-danger" *ngIf="registration_email.touched && !registration_email.valid">Email is required</div>
+                <!--TODO check pattern of the email-->
+                <input ngModel name="registration_password" id="registration_password" class="form-control" type="password" placeholder="password" [(ngModel)]="user.password">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="login--box">
+  <div *ngIf="user.loggedIn === false" class="logged-out">
+    <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#userActionModal"
+      >
+        Zarejestruj się
+      </button>
+  </div>
+</div>

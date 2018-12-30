@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthService} from './services/auth/auth.service';
 import {OfferService} from './services/offer/offer.service';
-import {User} from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +9,7 @@ import {User} from './models/user';
 })
 export class AppComponent {
 
-  user: User = new User();
   offers;
-
 
   constructor(private authService: AuthService,
               private offerService: OfferService) {
@@ -20,10 +17,6 @@ export class AppComponent {
 
   getOffers(){
    this.offerService.getOffers();
-  }
-
-  registerAction(){
-    this.authService.registerAction(this.user.name, this.user.email, this.user.password);
   }
 
 }

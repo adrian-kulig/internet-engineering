@@ -38,14 +38,6 @@
     >
       Zaloguj się
     </button>
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-toggle="modal"
-      data-target="#userActionModal"
-    >
-      Zarejestruj się
-    </button>
   </div>
   <div *ngIf="user.loggedIn" class="logged-in">
     <button class="btn btn-outline-success" (click)="doLogout()">
