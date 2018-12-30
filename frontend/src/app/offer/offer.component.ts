@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OfferService} from '../services/offer/offer.service';
 import {Offer} from '../models/offer';
 
@@ -18,7 +18,9 @@ export class OfferComponent implements OnInit {
   test : string;
 
   ngOnInit() {
-    this.offerService.getOffers();
+    this.offerService.getOffersA().subscribe(
+      data => this.offerList = data
+    );
   }
 
 

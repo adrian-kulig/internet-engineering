@@ -1,20 +1,15 @@
 import {Observable, Subject} from 'rxjs';
 import { Consts } from '../../consts/consts';
 import { Offer } from '../../models/offer';
-import { map } from 'rxjs/operators';
 import {AuthService} from '../auth/auth.service';
 import {environment} from '../../../environments/environment';
 
 import {ToastrService} from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
-import {Component, Injectable} from '@angular/core';
+import { Injectable} from '@angular/core';
 
 
 
-@Component({
-  selector: 'app-offer',
-  templateUrl: './offer.component.html',
-})
 @Injectable()
 export class OfferService {
 
