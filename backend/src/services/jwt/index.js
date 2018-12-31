@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const { jwtSecret } = require('../../config')
+const {jwtSecret} = require('../../config')
 const util = require('util');
 
 // Takes a function following the common error-first callback style,
@@ -17,6 +17,38 @@ const sign = (user, options, method = jwtSign) => {
     return method(payload, jwtSecret, options)
 }
 
+
+//póki co nie uzywane ( zastąpione metodą  passport.authenticate(token...)
+const verifyToken = function (token) {
+    const verifiedToken = jwtVerify(token, jwtSecret, function (err, decoded) {
+        if (err) {
+            return false;
+        }
+    });
+    return verifiedToken;
+}
+
+
+/**
+ * Checks if user is logged in, by checking if user is stored in session and verify user session token
+ */
+const authMiddleware = (req, res, next) => {
+    const session = req.session;
+    if (session.user && session.token) {
+        if (!verifyToken(session.token)) {
+            res.status(403).send({
+                errorMessage: 'Invalid token!'
+            });
+        }
+        next();
+    } else {
+        res.status(403).send({
+            errorMessage: 'You must be logged in.'
+        });
+    }
+};
+
+
 module.exports = {
-    sign
+    sign, verifyToken, authMiddleware
 }

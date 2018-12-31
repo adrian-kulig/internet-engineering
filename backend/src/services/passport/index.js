@@ -38,11 +38,17 @@ const token = ({required, roles = User.roles} = {}) => (req, res, next) =>
     passport.authenticate('token', {session: false}, (err, user, info) => {
         // jesli nie ma uzytkownika w bazie lub nie podano tokenu => 401
         if (err || (required && !user)) {
-            return res.status(401).end()
+            return res.status(401).send({
+                errorMessage: 'Invalid token!'
+            });
+            // return res.status(401).end()
         }
         // jesli uzytkownik nie ma prawa => 403
         if(required && !roles.includes(user.role)){
-            return res.status(403).end()
+            return res.status(403).send({
+                errorMessage: 'Brak dostępu dla tego użytkownika'
+            }).end();
+            // return res.status(403).end()
         }
         req.logIn(user, {session: false}, (err) => {
             if (err) return res.status(401).end()

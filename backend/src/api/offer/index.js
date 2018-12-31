@@ -1,21 +1,22 @@
-const { Router } = require('express')
-const { create, index, show, update, destroy } = require('./controller')
+const {Router} = require('express')
+const {create, index, show, update, destroy} = require('./controller')
+const {token, password} = require('../../services/passport')
 
 const app = new Router();
 
-app.post('/',
-  create)
 
-app.get('/',
-  index)
+app.post('/',
+    create)
+
+app.get('/', token({required: true}), index)
 
 app.get('/:id',
-  show)
+    show)
 
 app.put('/:id',
-  update)
+    update)
 
 app.delete('/:id',
-  destroy)
+    destroy)
 
 module.exports = app

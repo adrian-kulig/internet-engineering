@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('./services/mongoose')
 const User = require('./api/user/model').model;
 const {sign} = require('./services/jwt')
+// const {verifyToken} = require('./services/jwt');
+const offers = require('./api/offer');
+const users = require('./api/user');
 
 /**
  * Creating a new express app
@@ -81,6 +84,7 @@ const validatePayloadMiddleware = (req, res, next) => {
     }
 };
 
+
 /**
  * Log the user in.
  * User needs to provide pw and email, this is then compared to the pw in the "database"
@@ -114,12 +118,14 @@ app.post('/api/login', validatePayloadMiddleware, (req, res) => {
     });
 });
 
+
 /**
  * Check if user is logged in.
  */
 app.get('/api/login', (req, res) => {
     req.session.user ? res.status(200).send({loggedIn: true}) : res.status(200).send({loggedIn: false});
 });
+
 
 /**
  * Log the user out of the application.
@@ -135,49 +141,9 @@ app.post('/api/logout', (req, res) => {
 });
 
 /**
- * Checks if user is logged in, by checking if user is stored in session.
- */
-const authMiddleware = (req, res, next) => {
-    if (req.session && req.session.user) {
-        next();
-    } else {
-        res.status(403).send({
-            errorMessage: 'You must be logged in.'
-        });
-    }
-};
-
-
-/**
- * Some hardcoded values of account balances of users and method to fetch the balance.
- */
-const accountBalances = {
-    'max@gmail.com': 53762,
-    'lily@gmail.com': 4826
-};
-const getBalance = (email) => {
-    return accountBalances[email];
-};
-
-/**
  * Endpoint to get users' account balance. Uses AuthMiddleware, such that only authenticated users can fetch balance.
  */
-app.get('/api/balance', authMiddleware, (req, res) => {
-    const user = req.session.user;
-    const balance = getBalance(user.email);
-    if (balance) {
-        res.status(200).send({
-            balance: balance
-        })
-    } else {
-        res.status(403).send({
-            errorMessage: 'Access Denied.'
-        });
-    }
-});
-
-const offers = require('./api/offer');
-const users = require('./api/user');
+// app.get('/api/balance', authMiddleware, (req, res) => {});
 app.use('/api/offers', offers);
 app.use('/api/users', users);
 
@@ -187,3 +153,4 @@ app.use('/api/users', users);
 app.listen(3000, () => {
     console.log('Server listening on port 3000')
 });
+

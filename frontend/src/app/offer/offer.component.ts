@@ -15,10 +15,9 @@ export class OfferComponent implements OnInit {
 
   public newOffer: Offer = new Offer();
   offerList: Offer[];
-  test : string;
 
   ngOnInit() {
-    this.offerService.getOffersA().subscribe(
+    this.offerService.getOffersList().subscribe(
       data => this.offerList = data
     );
   }

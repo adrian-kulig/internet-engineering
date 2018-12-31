@@ -2,7 +2,6 @@ import {Observable, Subject} from 'rxjs';
 import { Consts } from '../../consts/consts';
 import { Offer } from '../../models/offer';
 import {AuthService} from '../auth/auth.service';
-import {environment} from '../../../environments/environment';
 
 import {ToastrService} from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +15,7 @@ export class OfferService {
   offer: Subject<Offer | null>;
 
   getOffers() {
-    const req = this.http.get(environment.apiUrl + '/offers', {
+    const req = this.http.get(Consts.Api.ROOT + Consts.Offer.URL, {
       withCredentials: true
     });
     req.subscribe((offer: Offer) => {
@@ -43,8 +42,8 @@ export class OfferService {
     return this.http.post(Consts.Api.ROOT + Consts.Offer.URL, offer);
   }
 
-  getOffersA(): Observable<Offer[]> {
-    return this.http.get<Offer[]>(Consts.Api.ROOT + Consts.Offer.URL);
+  getOffersList(): Observable<Offer[]> {
+    return this.http.get<Offer[]>(Consts.Api.ROOT + Consts.Offer.URL, AuthService.authorizationHeaders);
   }
 
   getOfferById(id: string): Observable<any> {

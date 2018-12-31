@@ -1,8 +1,9 @@
-import { NgModule } from "@angular/core";
-import { Route, RouterModule } from "@angular/router";
-import { NotfoundComponent } from './notfound/notfound.component';
-import { HomeComponent } from './home/home.component';
-import { OfferComponent } from './offer/offer.component';
+import {NgModule} from "@angular/core";
+import {Route, RouterModule} from "@angular/router";
+import {NotfoundComponent} from './notfound/notfound.component';
+import {HomeComponent} from './home/home.component';
+import {OfferComponent} from './offer/offer.component';
+import {UserComponent} from "./user/user.component";
 
 const routes: Route[] = [
   {
@@ -14,6 +15,10 @@ const routes: Route[] = [
     component: OfferComponent
   },
   {
+    path: 'users',
+    component: UserComponent
+  },
+  {
     path: '**',
     component: NotfoundComponent
   }
@@ -23,4 +28,5 @@ const routes: Route[] = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

@@ -1,6 +1,5 @@
 import {AppComponent} from './app.component';
 import {OfferService} from './services/offer/offer.service';
-import {AccountBalanceService} from './services/account/account-balance.service';
 import {AuthService} from './services/auth/auth.service';
 import {UserService} from "./services/user/user.service";
 import {OfferComponent} from './offer/offer.component';
@@ -16,6 +15,8 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { UserComponent } from './user/user.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,6 @@ import { NotfoundComponent } from './notfound/notfound.component';
   ],
   providers: [
     AuthService,
-    AccountBalanceService,
     OfferService,
     UserService
   ],

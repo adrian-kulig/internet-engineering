@@ -18,7 +18,7 @@ export class LoginComponent{
   }
 
   doLogin() {
-    this.authService.doLogin(this.user.email, this.user.password);
+    this.authService.doLogin(this.user.email, this.user.password, window.location.href);
   }
 
   doLogout() {
