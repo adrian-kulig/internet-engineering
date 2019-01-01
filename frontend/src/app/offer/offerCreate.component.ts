@@ -3,12 +3,12 @@ import {OfferService} from '../services/offer/offer.service';
 import {Offer} from '../models/offer';
 
 @Component({
-  selector: 'app-offer',
-  templateUrl: './offer.component.html',
+  selector: 'app-offer-create',
+  templateUrl: './offerCreate.component.html',
   styleUrls: ['./offer.component.css']
 })
 
-export class OfferComponent implements OnInit {
+export class OfferCreateComponent implements OnInit {
 
   offer: Offer = null;
 

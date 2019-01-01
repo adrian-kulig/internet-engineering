@@ -5,18 +5,14 @@ const {token, password} = require('../../services/passport')
 const app = new Router();
 
 
-app.post('/',
-    create)
+app.post('/create', token({required: true}), create)
 
 app.get('/', token({required: true}), index)
 
-app.get('/:id',
-    show)
+app.get('/:id', show)
 
-app.put('/:id',
-    update)
+app.put('/:id', update)
 
-app.delete('/:id',
-    destroy)
+app.delete('/:id', destroy)
 
 module.exports = app

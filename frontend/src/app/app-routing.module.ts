@@ -4,16 +4,31 @@ import {NotfoundComponent} from './notfound/notfound.component';
 import {HomeComponent} from './home/home.component';
 import {OfferComponent} from './offer/offer.component';
 import {UserComponent} from "./user/user.component";
+import {OfferCreateComponent} from "./offer/offerCreate.component";
 
 const routes: Route[] = [
   {
     path: '',
     component: HomeComponent
   },
+
+
+  /**
+   * OFERTY
+   */
   {
     path: 'offers',
-    component: OfferComponent
+    component: OfferComponent,
   },
+  {
+    path: 'offers/create',
+    component: OfferCreateComponent,
+  },
+
+
+  /**
+   * UŻYTKOWNICY
+   */
   {
     path: 'users',
     component: UserComponent
