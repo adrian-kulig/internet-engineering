@@ -13,9 +13,7 @@ export class OfferService {
   offer: Subject<Offer | null>;
 
 
-  constructor(private http: HttpClient,
-              private authService: AuthService,
-              private toastr: ToastrService) {
+  constructor(private http: HttpClient) {
   }
 
   createOffer(offer: Offer): Observable<Offer> {

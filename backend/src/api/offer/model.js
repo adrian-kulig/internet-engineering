@@ -15,6 +15,9 @@ const offerSchema = new Schema({
     description: {
         type: String,
         required: true
+    },
+    user: {
+        type: Schema.Types.ObjectId, ref: 'User'
     }
 }, {
     timestamps: true,
@@ -27,7 +30,8 @@ offerSchema.methods = {
             id: this._id,
             name: this.name,
             location: this.location,
-            description: this.description
+            description: this.description,
+            user: this.user
         }
 
         return full ? {
@@ -35,6 +39,7 @@ offerSchema.methods = {
             name: this.name,
             location: this.location,
             description: this.description,
+            user: this.user,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt
         } : view

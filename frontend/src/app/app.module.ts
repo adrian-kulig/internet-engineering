@@ -16,20 +16,20 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NotfoundComponent} from './notfound/notfound.component';
 import {UserComponent} from './user/user.component';
-import {OfferCreateComponent} from "./offer/offerCreate.component";
+import { CustomButtonComponent } from './custom-components/custom-button/custom-button.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     OfferComponent,
-    OfferCreateComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
     NotfoundComponent,
     UserComponent,
+    CustomButtonComponent
   ],
   imports: [
     BrowserModule,

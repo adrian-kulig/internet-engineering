@@ -1,23 +1,134 @@
-<div class="offers-content">
-  <div class="container">
-    <h3>Oferty pracy</h3>
-    <div class="row">
-      <div class="col-md-12" *ngFor="let offer of offerList">{{offer.name}}</div>
+<div class="row">
+  <div class="col-md-2" *ngFor="let o of offerList">{{ o.name }}</div>
+</div>
+
+<!-- <div *ngIf="user.loggedIn === false"> -->
+<!-- <div [hidden]="isClicked">
+  <form #createOffer="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="offerName">Nazwa oferta</label>
+      <input
+        ngModel
+        required
+        #offerName="ngModel"
+        name="offerName"
+        id="offerName"
+        class="form-control"
+        type="text"
+        placeholder="Offer Name"
+        [(ngModel)]="newOffer.name"
+      />
+      <label for="offerLocation">Lokalizacja</label>
+      <input
+        ngModel
+        required
+        #offerName="ngModel"
+        name="offerLocation"
+        id="offerLocation"
+        class="form-control"
+        type="text"
+        placeholder="Offer Location"
+        [(ngModel)]="newOffer.location"
+      />
+      <label for="offerDescription">Opis</label>
+      <textarea
+        ngModel
+        required
+        #offerName="ngModel"
+        name="offerDescription"
+        id="offerDescription"
+        class="form-control"
+        type="text"
+        placeholder="Offer Description"
+        [(ngModel)]="newOffer.description"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Post offer</button>
+  </form>
+</div>
+<div *ngIf="isClicked">
+  <button type="submit" class="btn btn-success" (click)="showOnClick()">Add Offer</button>
+</div>
+<div *ngIf="!isClicked">
+  <button type="button" class="btn btn-danger" (click)="showOnClick()">Cancel</button>
+</div> -->
+
+<!-- </div> -->
+
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Dodaj dane oferty</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #createOffer="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="offerName">Nazwa oferta</label>
+            <input
+              ngModel
+              required
+              #offerName="ngModel"
+              name="offerName"
+              id="offerName"
+              class="form-control"
+              type="text"
+              placeholder="Offer Name"
+              [(ngModel)]="newOffer.name"
+            />
+            <label for="offerLocation">Lokalizacja</label>
+            <input
+              ngModel
+              required
+              #offerName="ngModel"
+              name="offerLocation"
+              id="offerLocation"
+              class="form-control"
+              type="text"
+              placeholder="Offer Location"
+              [(ngModel)]="newOffer.location"
+            />
+            <label for="offerDescription">Opis</label>
+            <textarea
+              ngModel
+              required
+              #offerName="ngModel"
+              name="offerDescription"
+              id="offerDescription"
+              class="form-control"
+              type="text"
+              placeholder="Offer Description"
+              [(ngModel)]="newOffer.description"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">
+            Opublikuj oferte
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-
-
-<!--<form #registrationForm="ngForm" (ngSubmit)="createOfferActon(); registrationForm.reset()">-->
-
-  <!--<div class="register&#45;&#45;box">-->
-    <!--<input required ngModel #registration_name="ngModel" name="registration_name" id="registration_name" class="form-control" type="text" placeholder="name" [(ngModel)]="user.name"><br>-->
-    <!--<div class="alert alert-danger" *ngIf="registration_name.touched && !registration_name.valid">Name is required</div>-->
-    <!--<input ngModel email #registration_email="ngModel" name="registration_email" id="registration_email" class="form-control" type="email" placeholder="email" [(ngModel)]="user.email"><br>-->
-    <!--<div class="alert alert-danger" *ngIf="registration_email.touched && !registration_email.valid">Email is required</div>-->
-    <!--&lt;!&ndash;TODO check pattern of the email&ndash;&gt;-->
-    <!--<input ngModel name="registration_password" id="registration_password" class="form-control" type="password" placeholder="password" [(ngModel)]="user.password">-->
-  <!--</div>-->
-
-  <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>-->
-<!--</form>-->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#myModal"
+  (click)="log(userId)"
+>
+  <i>Dodaj ofertę</i>
+</button>

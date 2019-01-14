@@ -23,6 +23,9 @@ const userSchema = new Schema({
     required: [true, "Nazwa użytkownika jest wymagana<br>"],
     minlength: [4, "Nazwa użytkownika wymaga minimum 4 znaków"]
   },
+  offers: [{
+    type: Schema.Types.ObjectId, ref: 'Offer'
+  }],
   role: {
     type: String,
     enum: roles,
@@ -49,7 +52,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     let view = {}
-    let fields = ['id', 'name', 'email', 'role']
+    let fields = ['id', 'name', 'email', 'offers', 'role']
 
     if (full) {
       fields = [...fields, 'role', 'email']
