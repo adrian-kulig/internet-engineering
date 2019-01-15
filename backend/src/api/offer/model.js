@@ -23,6 +23,7 @@ const offerSchema = new Schema({
     timestamps: true,
 })
 
+
 offerSchema.methods = {
     view(full) {
         const view = {
