@@ -1,0 +1,36 @@
+<div class="container">
+  <div id="accordion">
+
+    <div class="card" *ngFor="let o of offerList">
+      <div class="card-header" id="heading-{{o.id}}">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapse-'+o.id"
+                  aria-expanded="true" [attr.aria-controls]="'collapse-'+o.id">
+            {{o.name}}
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapse-{{o.id}}" class="collapse" [attr.aria-labelledby]="'heading-'+o.id" data-parent="#accordion">
+        <div class="card-body">
+          <div class="clearfix">
+            <div class="float-left">
+              Miejsce: {{o.location}}
+            </div>
+            <div class="float-right">
+              <div *ngIf="o.user">Użytkownik: {{o.user.name}} {{o.user.lastName}} {{o.user.email}}</div>
+            </div>
+          </div>
+          Opis:{{o.description}}
+
+          <div class="read-more">
+            <a class="btn btn-primary" href="/offers/{{o.id}}">Zobacz więcej</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+

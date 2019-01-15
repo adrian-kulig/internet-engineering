@@ -6,18 +6,18 @@ const offerSchema = new Schema({
     name: {
         type: String,
         trim: true,
-        required: true
+        required: [true, "Nazwa oferty jest wymagana."],
     },
     location: {
         type: String,
-        required: true
+        required: [true, "Lokalizacja oferty jest wymagana."],
     },
     description: {
         type: String,
-        required: true
+        required: [true, "Opis oferty jest wymagany."],
     },
     user: {
-        type: Schema.Types.ObjectId, ref: 'User'
+        type: mongoose.Schema.Types.Object, ref: 'User'
     }
 }, {
     timestamps: true,

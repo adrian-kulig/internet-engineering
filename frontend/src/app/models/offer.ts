@@ -1,5 +1,7 @@
 import { Timestamp } from "rxjs";
 import { User } from './user';
+import {AuthService} from "../services/auth/auth.service";
+
 
 export class Offer {
   id: String
@@ -14,5 +16,6 @@ export class Offer {
     this.location = ""
     this.description = ""
     this.timestamp = new Date();
+    this.user = AuthService.SessionStorageManager.getValue('user');
   }
 }

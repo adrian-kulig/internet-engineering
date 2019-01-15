@@ -1,11 +1,13 @@
 const { success, notFound } = require('../../services/response/')
+const validationHelpers = require('../../helpers/helpers');
 const Offer = require('./model').model
 
-const create = ({ body }, res, next) =>
-  Offer.create(body)
-    .then((offer) => offer.view(true))
-    .then(success(res, 201))
-    .catch(next)
+const create = ({ body }, res, next) => {
+    Offer.create(body)
+        .then((offer) => offer.view(true))
+        .then(success(res, 201))
+        .catch((err) => validationHelpers.customValidation(res, err, next))
+}
 
 const index = ({ query }, res, next) =>
   Offer.find()
@@ -13,12 +15,14 @@ const index = ({ query }, res, next) =>
     .then(success(res))
     .catch(next)
 
-const show = ({ params }, res, next) =>
-  Offer.findById(params.id)
-    .then(notFound(res))
-    .then((offer) => offer ? offer.view(true) : null)
-    .then(success(res))
-    .catch(next)
+const show = ({params}, res, next) => {
+    Offer.findById(params.id)
+        .then(notFound(res))
+        .then((offer) => offer ? offer.view(true) : null)
+        .then(success(res))
+        .catch(next)
+}
+
 
 const update = ({ body, params }, res, next) =>
   Offer.findById(params.id)

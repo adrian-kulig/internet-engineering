@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import {OfferService} from '../../services/offer/offer.service';
 import {Offer} from '../../models/offer';
 import { User } from '../../models/user';
@@ -12,15 +13,21 @@ import { User } from '../../models/user';
 export class OfferItemComponent implements OnInit {
 
   // user: string = sessionStorage.getItem('user');
-  // offer: Offer = null;
+  offer: Offer = null;
+  id : string;
 
-  // constructor(private offerService: OfferService) {
-  // }
+  constructor(private offerService: OfferService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-  //   this.offerService.getOfferById('5c0a1e43778d5d094a81a8ef').subscribe(
-  //     data => this.offer = data,
-  //   );
+    this.route.params.subscribe(params => {
+      this.id = params.id; // --> Name must match wanted parameter
+    });
+
+
+    this.offerService.getOfferById(this.id).subscribe(
+      data => this.offer = data,
+    );
   }
 
 
