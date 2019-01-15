@@ -11,12 +11,15 @@ import { Offer } from '../models/offer';
 })
 export class UserComponent implements OnInit {
 
-  userOffersList: Offer[];
-
-  constructor(private offerService: OfferService) {
+  constructor(private userService: UserService) {
   }
+
+  userList: User[];
 
   ngOnInit() {
+    // this.userService.getUserList();
+    this.userService.getUsersList().subscribe(
+      data => this.userList = data
+    );
   }
-
 }
