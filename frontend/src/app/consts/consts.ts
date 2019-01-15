@@ -6,6 +6,7 @@ export class Consts{
     static URL = "/offers";
     static TITLE = "Offers";
     static CREATE_URL = "/offers/create"
+    static USER_OFFER_LIST = "/offers/user"
   }
   static User = class {
     static URL = "/users";

@@ -116,4 +116,7 @@ export class AuthService {
     AuthService.SessionStorageManager.removeKey('user');
   }
 
+  public isUserLoggedIn() {
+    return this.loggedIn;
+  }
 }

@@ -23,6 +23,14 @@ const show = ({params}, res, next) => {
         .catch(next)
 }
 
+const userListOffers = ({params}, res, next) => {
+    Offer.find({"user._id": params.id})
+        .then(notFound(res))
+        .then((offer) => offer ? offer.view(true) : null)
+        .then(success(res))
+        .catch(next)
+}
+
 
 const update = ({ body, params }, res, next) =>
   Offer.findById(params.id)
@@ -40,5 +48,5 @@ const destroy = ({ params }, res, next) =>
     .catch(next)
 
 module.exports = {
-    create, index, show, update, destroy
+    create, index, show, update, destroy, userListOffers
 }

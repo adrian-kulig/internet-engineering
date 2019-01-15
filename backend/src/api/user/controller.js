@@ -2,8 +2,8 @@ const {success, notFound} = require('../../services/response/')
 const User = require('./model').model
 const {sign} = require('../../services/jwt')
 const _ = require('lodash')
-const catchDuplicateEmail = require("./helpers").catchDuplicateEmail;
-const validationHelpers = require("./helpers");
+const catchDuplicateEmail = require("../../helpers/helpers").catchDuplicateEmail;
+const validationHelpers = require("../../helpers/helpers");
 
 
 const index = (req, res, next) =>

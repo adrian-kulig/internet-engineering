@@ -28,6 +28,10 @@ export class OfferService {
     return this.http.get<Offer>(Consts.Api.ROOT + Consts.Offer.URL + "/" + id);
   }
 
+  getUserOffers(id): Observable<Offer[]> {
+    return this.http.get<Offer[]>(Consts.Api.ROOT + Consts.Offer.USER_OFFER_LIST + '/'+ id, AuthService.authorizationHeaders);
+  }
+
   editOffer(offer: Offer): Observable<Offer> {
     return this.http.put<Offer>(Consts.Offer.URL, offer);
   }

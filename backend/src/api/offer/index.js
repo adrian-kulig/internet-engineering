@@ -1,5 +1,5 @@
 const {Router} = require('express')
-const {create, index, show, update, destroy} = require('./controller')
+const {create, index, show, update, destroy, userListOffers} = require('./controller')
 const {token, password} = require('../../services/passport')
 
 const app = new Router();
@@ -8,6 +8,8 @@ const app = new Router();
 app.post('/create', token({required: true}), create)
 
 app.get('/', index)
+
+app.get('/user/:id', userListOffers)
 
 app.get('/:id', show)
 

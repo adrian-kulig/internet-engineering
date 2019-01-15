@@ -27,15 +27,15 @@ const customValidation = (res, err, next) => {
     }
 }
 
-const parseErrorMessages = (errorMessages) =>{
-    if(!errorMessages.length){
+const parseErrorMessages = (errorMessages) => {
+    if (!errorMessages.length) {
         return;
     }
 
-    let errorMessageString ='';
-    for(let i = 0; i < errorMessages.length; i++){
+    let errorMessageString = '';
+    for (let i = 0; i < errorMessages.length; i++) {
         let newline = '';
-        if (errorMessages.length > 1 && i < errorMessages.length - 1){
+        if (errorMessages.length > 1 && i < errorMessages.length - 1) {
             newline = '<br>';
         }
         errorMessageString += errorMessages[i] + newline;

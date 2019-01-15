@@ -13,8 +13,8 @@ import { User } from '../../models/user';
 export class OfferListComponent implements OnInit {
 
   // user: string = sessionStorage.getItem('user');
-  offer: Offer = null;
-  public newOffer: Offer = new Offer();
+  // offer: Offer = null;
+  // public newOffer: Offer = new Offer();
   offerList: Offer[];
 
   constructor(private offerService: OfferService) {
