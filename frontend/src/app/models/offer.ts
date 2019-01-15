@@ -2,6 +2,7 @@ import { Timestamp } from "rxjs";
 import { User } from './user';
 
 export class Offer {
+  id: String
   name: String;
   location: String;
   description: String;

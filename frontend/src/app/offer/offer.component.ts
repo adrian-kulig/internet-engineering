@@ -31,6 +31,20 @@ export class OfferComponent implements OnInit {
     )
   }
 
+  itemOfferAction(id) {
+    this.offerService.getOfferById(id).subscribe(
+      offer => this.offer = offer
+    )
+  }
+
+
+  editOfferAction(offer: Offer) {
+    this.offerService.editOffer(offer).subscribe(
+      offer => this.offer = offer
+    )
+  }
+
+
   onSubmit() {
     this.createOfferAction(this.newOffer);
   }

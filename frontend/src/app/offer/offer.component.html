@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-2" *ngFor="let o of offerList">{{ o.name }}</div>
+  <div class="col-md-2" *ngFor="let o of offerList">{{ o.name }} {{o.id}}</div>
 </div>
 
 <!-- <div *ngIf="user.loggedIn === false"> -->
@@ -55,23 +55,12 @@
 
 <!-- </div> -->
 
-<div
-  class="modal fade"
-  id="myModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModalLabel"
->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">Dodaj dane oferty</h4>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -79,41 +68,16 @@
         <form #createOffer="ngForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="offerName">Nazwa oferta</label>
-            <input
-              ngModel
-              required
-              #offerName="ngModel"
-              name="offerName"
-              id="offerName"
-              class="form-control"
-              type="text"
-              placeholder="Offer Name"
-              [(ngModel)]="newOffer.name"
-            />
+            <input ngModel required #offerName="ngModel" name="offerName" id="offerName" class="form-control"
+                   type="text" placeholder="Offer Name"
+                   [(ngModel)]="newOffer.name"/>
             <label for="offerLocation">Lokalizacja</label>
-            <input
-              ngModel
-              required
-              #offerName="ngModel"
-              name="offerLocation"
-              id="offerLocation"
-              class="form-control"
-              type="text"
-              placeholder="Offer Location"
-              [(ngModel)]="newOffer.location"
-            />
+            <input ngModel required #offerName="ngModel" name="offerLocation" id="offerLocation" class="form-control"
+                   type="text" placeholder="Offer Location" [(ngModel)]="newOffer.location"/>
             <label for="offerDescription">Opis</label>
-            <textarea
-              ngModel
-              required
-              #offerName="ngModel"
-              name="offerDescription"
-              id="offerDescription"
-              class="form-control"
-              type="text"
-              placeholder="Offer Description"
-              [(ngModel)]="newOffer.description"
-            ></textarea>
+            <textarea ngModel required #offerName="ngModel" name="offerDescription" id="offerDescription"
+                      class="form-control" type="text" placeholder="Offer Description"
+                      [(ngModel)]="newOffer.description"></textarea>
           </div>
           <button type="submit" class="btn btn-success">
             Opublikuj oferte
@@ -123,12 +87,7 @@
     </div>
   </div>
 </div>
-<button
-  type="button"
-  class="btn btn-primary"
-  data-toggle="modal"
-  data-target="#myModal"
-  (click)="log(userId)"
->
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="log(userId)">
   <i>Dodaj ofertę</i>
 </button>

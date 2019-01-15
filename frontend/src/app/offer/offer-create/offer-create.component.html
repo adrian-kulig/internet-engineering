@@ -1,0 +1,20 @@
+<div class="container">
+  <form #createOffer="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="offerName">Nazwa oferta</label>
+      <input ngModel required #offerName="ngModel" name="offerName" id="offerName" class="form-control"
+             type="text" placeholder="Offer Name"
+             [(ngModel)]="newOffer.name"/>
+      <label for="offerLocation">Lokalizacja</label>
+      <input ngModel required #offerName="ngModel" name="offerLocation" id="offerLocation" class="form-control"
+             type="text" placeholder="Offer Location" [(ngModel)]="newOffer.location"/>
+      <label for="offerDescription">Opis</label>
+      <textarea ngModel required #offerName="ngModel" name="offerDescription" id="offerDescription"
+                class="form-control" type="text" placeholder="Offer Description"
+                [(ngModel)]="newOffer.description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">
+      Opublikuj oferte
+    </button>
+  </form>
+</div>

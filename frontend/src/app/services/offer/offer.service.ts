@@ -24,12 +24,12 @@ export class OfferService {
     return this.http.get<Offer[]>(Consts.Api.ROOT + Consts.Offer.URL, AuthService.authorizationHeaders);
   }
 
-  getOfferById(id: string): Observable<any> {
-    return this.http.get(Consts.Offer.URL + "/" + id);
+  getOfferById(id: string): Observable<Offer> {
+    return this.http.get<Offer>(Consts.Api.ROOT + Consts.Offer.URL + "/" + id);
   }
 
-  editOffer(offer: Offer) {
-    return this.http.put(Consts.Offer.URL, offer);
+  editOffer(offer: Offer): Observable<Offer> {
+    return this.http.put<Offer>(Consts.Offer.URL, offer);
   }
 
   deleteOffer(id: string): any {
