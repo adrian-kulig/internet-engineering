@@ -15,7 +15,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NotfoundComponent} from './notfound/notfound.component';
 import {UserComponent} from './user/user.component';
-import { CustomButtonComponent } from './custom-components/custom-button/custom-button.component';
+import {CustomButtonComponent} from './custom-components/custom-button/custom-button.component';
 import {OfferItemComponent} from "./offer/offer-item/offer-item.component";
 import {OfferCreateComponent} from "./offer/offer-create/offer-create.component";
 import {OfferListComponent} from "./offer/offer-list/offer-list.component";

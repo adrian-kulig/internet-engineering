@@ -14,6 +14,7 @@ export class OfferItemComponent implements OnInit {
 
   // user: string = sessionStorage.getItem('user');
   offer: Offer = null;
+  // comments: Comments = [];
   id : string;
 
   constructor(private offerService: OfferService, private route: ActivatedRoute) {

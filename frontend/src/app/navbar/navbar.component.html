@@ -23,7 +23,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" routerLink="{{consts.Offer.URL}}">Wszystkie oferty</a>
           <a class="dropdown-item" routerLink="{{consts.Offer.CREATE_URL}}">Dodaj ofertę</a>
-          <a class="dropdown-item" routerLink="{{consts.Offer.USER_OFFER_LIST}}/{{loggedUser.id}}">Moje oferty</a>
+          <div *ngIf="loggedUser"><a class="dropdown-item" routerLink="{{consts.Offer.USER_OFFER_LIST}}/{{loggedUser.id}}">Moje oferty</a></div>
         </div>
       </li>
     </ul>

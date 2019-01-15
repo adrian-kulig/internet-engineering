@@ -24,9 +24,8 @@ const show = ({params}, res, next) => {
 }
 
 const userListOffers = ({params}, res, next) => {
-    Offer.find({ user: {"_id": params.id}})
-        .then(notFound(res))
-        .then((offer) => offer ? offer.view(true) : null)
+    Offer.find({"user.id" : params.id })
+        .then((offers) => offers.map((offer) => offer.view()))
         .then(success(res))
         .catch(next)
 }
