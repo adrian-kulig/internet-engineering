@@ -4,13 +4,13 @@ export class Consts{
   }
   static Offer = class {
     static URL = "/offers";
-    static TITLE = "Offers";
+    static TITLE = "Oferty";
     static CREATE_URL = "/offers/create"
     static USER_OFFER_LIST = "/offers/user"
   }
   static User = class {
     static URL = "/users";
-    static TITLE = "Users";
+    static TITLE = "Użytkownicy";
   }
   static Oauth = class{
     static LOGIN = '/login';

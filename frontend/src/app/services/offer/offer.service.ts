@@ -36,8 +36,8 @@ export class OfferService {
     return this.http.put<Offer>(Consts.Offer.URL, offer);
   }
 
-  deleteOffer(id: string): any {
-    return this.http.delete(Consts.Offer + "/" + id);
+  deleteOffer(id: string): Observable<Offer> {
+    return this.http.delete<Offer>(Consts.Api.ROOT + Consts.Offer.URL + '/'+ id, AuthService.authorizationHeaders);
   }
 
 }

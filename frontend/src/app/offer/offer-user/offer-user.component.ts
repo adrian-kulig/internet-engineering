@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {OfferService} from '../../services/offer/offer.service';
 import {Offer} from '../../models/offer';
-import { User } from '../../models/user';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-user-offers',
@@ -13,14 +13,15 @@ import { User } from '../../models/user';
 export class OfferUserComponent implements OnInit {
 
   offerList: Offer[];
-  id : string;
+  id: string;
+  @Input() public offerID;
 
-  constructor(private offerService: OfferService, private route: ActivatedRoute) {
+  constructor(private offerService: OfferService, private route: ActivatedRoute, private toastr: ToastrService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params.id; // --> Name must match wanted parameter
+      this.id = params.id;
     });
 
 
@@ -29,5 +30,16 @@ export class OfferUserComponent implements OnInit {
     );
   }
 
+  onDeleteOffer(offerID) {
+    if (confirm("Czy na pewno chcesz usunąć ofertę?")) {
+      this.offerService.deleteOffer(offerID).subscribe((resp: any) => {
+          this.toastr.success('Oferta została usunięta');
+          this.ngOnInit();
+        },
+        (errorResp) => {
+          this.toastr.error('Nie udało się usunąc oferty');
+        })
+    }
+  }
 
 }
