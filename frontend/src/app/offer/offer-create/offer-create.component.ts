@@ -24,7 +24,7 @@ export class OfferCreateComponent implements OnInit {
 
   ngOnInit() {
     if (!AuthService.SessionStorageManager.getValue('user')) {
-      this.router.navigate(['/offers']).then(() => {
+      this.router.navigate(['/']).then(() => {
         this.toastr.error('Musisz być zalogowany.');
       })
     }
