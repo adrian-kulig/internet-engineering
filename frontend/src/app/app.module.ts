@@ -21,6 +21,7 @@ import {OfferCreateComponent} from "./offer/offer-create/offer-create.component"
 import {OfferListComponent} from "./offer/offer-list/offer-list.component";
 import {OfferUserComponent} from "./offer/offer-user/offer-user.component";
 import {OfferEditComponent} from "./offer/offer-edit/offer-edit.component";
+import {TruncatePipe} from "./helpers/truncate-pipe";
 
 
 
@@ -39,7 +40,8 @@ import {OfferEditComponent} from "./offer/offer-edit/offer-edit.component";
     OfferUserComponent,
     OfferEditComponent,
     CustomButtonComponent,
-    RegisterComponent
+    RegisterComponent,
+    TruncatePipe
 
   ],
   imports: [
