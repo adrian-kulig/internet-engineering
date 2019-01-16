@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 import {Subject} from 'rxjs/Subject';
 import {Consts} from "../../consts/consts";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
@@ -34,7 +35,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.loggedIn = new Subject();
     //TODO DAMIAN/ADRIAN
@@ -82,7 +84,7 @@ export class AuthService {
       withCredentials: true
     }).subscribe(() => {
       AuthService.removeUserSession();
-      this.toastr.success('Wylogowałeś się.')
+      this.toastr.success('Wylogowałeś się.');
       window.location.href = '';
       this.loggedIn.next(false);
     });
@@ -97,8 +99,10 @@ export class AuthService {
     }, {
       withCredentials: true
     }).subscribe((resp: any) => {
-      this.loggedIn.next(true);
-      console.log(resp);
+      this.router.navigate(['/']).then(() => {
+        this.toastr.success('Zarejestrtowałeś się pomyślnie. Możesz się zalogowac');
+      })
+      // this.loggedIn.next(true);
       //TODO pobrać token i zapisac go do sesji
       // this.toastr.success(resp && resp.user && resp.user.name ? `Welcome ${resp.user.name}` : 'Logged in!');
     }, (errorResp) => {

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user';
-import { AuthService } from '../services/auth/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../models/user';
+import {AuthService} from '../services/auth/auth.service';
+import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'register',
@@ -11,16 +13,21 @@ export class RegisterComponent implements OnInit {
 
   user: User = new User();
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {
     this.authService.loggedIn.subscribe(loggedIn => {
-      this.user.loggedIn = loggedIn;
+
+      if (loggedIn) {
+        this.router.navigate(['/']).then(() => {
+          this.toastr.error('Jesteś zalogowany.');
+        })
+      }
     });
   }
 
   ngOnInit() {
   }
 
-  registerAction(){
+  registerAction() {
     this.authService.registerAction(this.user.name, this.user.email, this.user.password);
   }
 

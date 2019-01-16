@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>OFerta</h2>
+  <form #editOffer="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="offerName">Nazwa oferta</label>
+      <input ngModel required #offerName="ngModel" name="offerName" id="offerName" class="form-control"
+             type="text" placeholder="Offer Name"
+             [(ngModel)]="offer.name"/>
+      <label for="offerLocation">Lokalizacja</label>
+      <input ngModel required #offerLocation="ngModel" name="offerLocation" id="offerLocation" class="form-control"
+             type="text" placeholder="Offer Location" [(ngModel)]="offer.location"/>
+      <label for="offerDescription">Opis</label>
+      <textarea ngModel required #offerDescription="ngModel" name="offerDescription" id="offerDescription"
+                class="form-control" type="text" placeholder="Offer Description"
+                [(ngModel)]="offer.description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">
+     Zapisz
+    </button>
+  </form>
+</div>

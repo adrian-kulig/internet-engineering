@@ -5,6 +5,7 @@ import {User} from '../../models/user';
 import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../../services/auth/auth.service";
 import {Router} from "@angular/router";
+import {Consts} from "../../consts/consts";
 
 @Component({
   selector: 'app-offer-create',
@@ -32,7 +33,9 @@ export class OfferCreateComponent implements OnInit {
 
   createOfferAction(offer: Offer) {
     this.offerService.createOffer(offer).subscribe((resp: any) => {
-        this.toastr.success('Oferta została zapisana poprawnie');
+        this.router.navigate([Consts.Offer.URL+'/user/'+AuthService.SessionStorageManager.getValue('user').id]).then(() => {
+          this.toastr.success('Oferta została zapisana poprawnie');
+        })
       },
       (errorResp) => {
         this.toastr.error(errorResp.error.errorMessage ? errorResp.error.errorMessage : 'Coś poszło nie tak.')

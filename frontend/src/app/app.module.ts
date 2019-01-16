@@ -20,6 +20,7 @@ import {OfferItemComponent} from "./offer/offer-item/offer-item.component";
 import {OfferCreateComponent} from "./offer/offer-create/offer-create.component";
 import {OfferListComponent} from "./offer/offer-list/offer-list.component";
 import {OfferUserComponent} from "./offer/offer-user/offer-user.component";
+import {OfferEditComponent} from "./offer/offer-edit/offer-edit.component";
 
 
 
@@ -36,7 +37,9 @@ import {OfferUserComponent} from "./offer/offer-user/offer-user.component";
     OfferItemComponent,
     OfferCreateComponent,
     OfferUserComponent,
-    CustomButtonComponent
+    OfferEditComponent,
+    CustomButtonComponent,
+    RegisterComponent
 
   ],
   imports: [
