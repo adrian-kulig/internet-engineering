@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth/auth.service';
+import {Consts} from "../consts/consts";
 
 @Component({
   selector: 'login',
@@ -10,9 +11,15 @@ import { AuthService } from '../services/auth/auth.service';
 export class LoginComponent{
 
   user: User = new User();
+  userLogged: User;
+  consts = Consts;
+
 
   constructor(private authService: AuthService,) {
     this.authService.loggedIn.subscribe(loggedIn => {
+      if(AuthService.SessionStorageManager.getValue('user')){
+        this.userLogged = AuthService.SessionStorageManager.getValue('user');
+      }
       this.user.loggedIn = loggedIn;
     });
   }

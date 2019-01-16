@@ -1,45 +1,66 @@
-<form #registrationForm="ngForm" (ngSubmit)="registerAction(); registrationForm.reset()">
-  <div class="modal fade" id="userActionModal" tabindex="-1" role="dialog" aria-labelledby="userActions" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div *ngIf="user.loggedIn === false">
-          <div class="modal-header">
-            <h5 class="modal-title" id="userActions">Rejestracja</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="form-group">
-            <div class="modal-body">
-              <div class="register--box">
-                <input required ngModel #registration_name="ngModel" name="registration_name" id="registration_name" class="form-control" type="text" placeholder="name" [(ngModel)]="user.name"><br>
-                <div class="alert alert-danger" *ngIf="registration_name.touched && !registration_name.valid">Name is required</div>
-                <input ngModel email #registration_email="ngModel" name="registration_email" id="registration_email" class="form-control" type="email" placeholder="email" [(ngModel)]="user.email"><br>
-                <div class="alert alert-danger" *ngIf="registration_email.touched && !registration_email.valid">Email is required</div>
-                <!--TODO check pattern of the email-->
-                <input ngModel name="registration_password" id="registration_password" class="form-control" type="password" placeholder="password" [(ngModel)]="user.password">
-              </div>
+<main class="main minh-100vh">
+  <!-- Section -->
+  <section class="py-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 order-lg-2">
+          <div class="row minh-100vh h-100 align-items-center">
+            <!--<login class="login-component"></login>-->
+            <!--<register class="login-component"></register>-->
+
+
+            <div class="register-component">
+              <form class="col px-lg-6 px-xl-8 px-xxl-11 py-9 py-lg-4 align-self-center" #registrationForm="ngForm"
+                    (ngSubmit)="registerAction(); registrationForm.reset()" novalidate>
+                <h1>Please sign up</h1>
+                <h5 class="mb-5 text-700">Fill out the form to get started</h5>
+
+                <div class="form-group ">
+                  <input ngModel required #name="ngModel" name="email" id="name" class="form-control form-control-lg"
+                         type="text" placeholder="Name" [(ngModel)]="user.name"><br>
+                </div>
+                <div class="form-group ">
+                  <input ngModel required #name="ngModel" name="email" id="lastName"
+                         class="form-control form-control-lg" type="text" placeholder="Lastname"
+                         [(ngModel)]="user.lastName"><br>
+                </div>
+                <div class="form-group ">
+                  <input ngModel required #email="ngModel" name="email" id="email" class="form-control form-control-lg"
+                         type="email" placeholder="Email address" [(ngModel)]="user.email"><br>
+                </div>
+                <div class="form-group ">
+                  <input ngModel name="password" id="password" class="form-control form-control-lg" type="password"
+                         placeholder="Password" [(ngModel)]="user.password"><br>
+                </div>
+                <button type="submit" class="btn btn-lg btn-secondary btn-block ">Sign UP</button>
+
+                <p class="text-center text-600">Already have account? <a href="/">Sign In</a></p>
+
+                <!--<div class="mt-5 pt-5 border-top-centered-30 border-top-centered-faded">-->
+                  <!--<div class="row">-->
+                    <!--<div class="col-6">-->
+                      <!--<button type="button" class="btn btn-facebook btn-block"><i class="zmdi zmdi-facebook"></i><span-->
+                        <!--class="d-none d-lg-inline ml-3">Facebook</span></button>-->
+                    <!--</div>-->
+                    <!--<div class="col-6">-->
+                      <!--<button type="button" class="btn btn-twitter btn-block"><i class="zmdi zmdi-twitter"></i><span-->
+                        <!--class="d-none d-lg-inline ml-3">Twitter</span></button>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              </form>
             </div>
+
+
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zarejestruj się</button>
-          </div>
+        </div>
+
+        <div class="col-lg-6 order-lg-1 px-0 py-9">
+          <div class="bg-container overlay overlay-10"
+               style="height:100vh;width:100%; background-image: url('../../assets/images/worker-meeting.jpg')"></div>
         </div>
       </div>
     </div>
-  </div>
-</form>
-
-<div class="login--box">
-  <div *ngIf="user.loggedIn === false" class="logged-out">
-    <button
-        type="button"
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#userActionModal"
-      >
-        Zarejestruj się
-      </button>
-  </div>
-</div>
+  </section>
+  <!-- End of Section -->
+</main>
