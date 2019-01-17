@@ -1,4 +1,4 @@
-<div *ngIf="!user.loggedIn" class="align-self-center login-content">
+<div *ngIf="!userLogged" class="align-self-center login-content">
 
   <form class="col px-lg-6 px-xl-8 px-xxl-11 py-9 py-lg-4" #loginForm="ngForm"
         (ngSubmit)="onSubmit(); loginForm.reset()" novalidate>
@@ -31,7 +31,7 @@
 
 </div>
 
-<div *ngIf="user.loggedIn" class="align-self-center login-content">
+<div *ngIf="userLogged" class="align-self-center login-content">
 
   <div class="col px-lg-6 px-xl-8 px-xxl-11 py-9 py-lg-4">
     <h1>Witaj {{userLogged.name}} {{userLogged.lastName}}</h1>

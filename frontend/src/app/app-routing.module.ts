@@ -9,10 +9,10 @@ import {OfferListComponent} from "./offer/offer-list/offer-list.component";
 import {OfferUserComponent} from "./offer/offer-user/offer-user.component";
 import {OfferEditComponent} from "./offer/offer-edit/offer-edit.component";
 import {RegisterComponent} from "./register/register.component";
-import { CommentCreateComponent } from './comment/comment-create/comment-create.component';
-import { CommentEditComponent } from './comment/comment-edit/comment-edit.component';
-import { CommentOfferComponent } from './comment/comment-offer/comment-offer.component';
-import { CommentItemComponent } from './comment/comment-item/comment-item.component';
+import { CommentCreateComponent } from "./comment/comment-create/comment-create.component";
+import { CommentEditComponent } from "./comment/comment-edit/comment-edit.component";
+import { CommentOfferComponent } from "./comment/comment-offer/comment-offer.component";
+import { CommentItemComponent } from "./comment/comment-item/comment-item.component";
 
 
 const routes: Route[] = [

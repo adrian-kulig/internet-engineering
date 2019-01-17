@@ -1,17 +1,16 @@
-import { Observable, Subject } from 'rxjs';
-import { Consts } from '../../consts/consts';
-import { Offer } from '../../models/offer';
-import { AuthService } from '../auth/auth.service';
-import { ToastrService } from 'ngx-toastr';
-import { HttpClient } from '@angular/common/http';
-import { Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {Consts} from '../../consts/consts';
+import {Offer} from '../../models/offer';
+import {AuthService} from '../auth/auth.service';
+import {ToastrService} from 'ngx-toastr';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 
 
 @Injectable()
 export class OfferService {
 
   offer: Subject<Offer | null>;
-
 
   constructor(private http: HttpClient) {
   }
@@ -29,15 +28,15 @@ export class OfferService {
   }
 
   getUserOffers(id): Observable<Offer[]> {
-    return this.http.get<Offer[]>(Consts.Api.ROOT + Consts.Offer.USER_OFFER_LIST + '/'+ id, AuthService.authorizationHeaders);
+    return this.http.get<Offer[]>(Consts.Api.ROOT + Consts.Offer.USER_OFFER_LIST + '/' + id, AuthService.authorizationHeaders);
   }
 
   editOffer(id: string, offer: Offer): Observable<Offer> {
-    return this.http.put<Offer>(Consts.Api.ROOT + Consts.Offer.EDIT_URL + '/'+id, offer, AuthService.authorizationHeaders);
+    return this.http.put<Offer>(Consts.Api.ROOT + Consts.Offer.EDIT_URL + '/' + id, offer, AuthService.authorizationHeaders);
   }
 
   deleteOffer(id: string): Observable<Offer> {
-    return this.http.delete<Offer>(Consts.Api.ROOT + Consts.Offer.URL + '/'+ id, AuthService.authorizationHeaders);
+    return this.http.delete<Offer>(Consts.Api.ROOT + Consts.Offer.URL + '/' + id, AuthService.authorizationHeaders);
   }
 
 }

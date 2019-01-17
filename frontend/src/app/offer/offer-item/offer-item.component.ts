@@ -33,7 +33,11 @@ export class OfferItemComponent implements OnInit {
 
 
     this.offerService.getOfferById(this.id).subscribe(
-      data => this.offer = data,
+      data => {
+        this.offer = data
+      },error => {
+        this.offerServiceHelper.redirect('/');
+      }
     );
   }
 
