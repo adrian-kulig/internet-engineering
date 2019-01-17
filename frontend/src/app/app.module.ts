@@ -22,6 +22,7 @@ import {OfferListComponent} from "./offer/offer-list/offer-list.component";
 import {OfferUserComponent} from "./offer/offer-user/offer-user.component";
 import {OfferEditComponent} from "./offer/offer-edit/offer-edit.component";
 import {TruncatePipe} from "./helpers/truncate-pipe";
+import {OfferHelperService} from "./utils/offer-helper.service";
 
 
 
@@ -50,12 +51,13 @@ import {TruncatePipe} from "./helpers/truncate-pipe";
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     AuthService,
     OfferService,
-    UserService
+    UserService,
+    OfferHelperService
   ],
   bootstrap: [AppComponent]
 })

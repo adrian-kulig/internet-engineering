@@ -6,6 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../../services/auth/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Consts} from "../../consts/consts";
+import {OfferHelperService} from "../../utils/offer-helper.service";
 
 @Component({
   selector: 'app-offer-edit',
@@ -19,7 +20,12 @@ export class OfferEditComponent implements OnInit {
   offer: Offer = null;
 
 
-  constructor(private offerService: OfferService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) {
+  constructor(private offerService: OfferService,
+              private toastr: ToastrService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private offerServiceHelper: OfferHelperService,
+  ) {
     this.route.params.subscribe(params => {
       this.id = params.id;
     });
@@ -27,16 +33,16 @@ export class OfferEditComponent implements OnInit {
 
   ngOnInit() {
     if (!AuthService.SessionStorageManager.getValue('user')) {
-      this.throwError('Musisz być zalogowany');
+      this.offerServiceHelper.redirect('/','error','Musisz być zalogowany');
       return false;
     }
     this.offerService.getOfferById(this.id).subscribe(
       data => {
 
-        if (data.user && data.user.id == AuthService.SessionStorageManager.getValue('user').id) {
+        if (data.user && data.user.id == AuthService.getLoggedInUser().id) {
           this.offer = data
         } else {
-          this.throwError('Nie możesz edytować tej oferty.');
+          this.offerServiceHelper.redirect('/offers', 'error', 'Nie możesz edytować tej oferty.');
         }
       }
     );
@@ -46,20 +52,11 @@ export class OfferEditComponent implements OnInit {
 
   editOfferAction(offer: Offer) {
     this.offerService.editOffer(this.id, offer).subscribe((resp: any) => {
-        // this.router.navigate([Consts.Offer.URL + '/user/' + AuthService.SessionStorageManager.getValue('user').id]).then(() => {
-          this.toastr.success('Oferta została zapisana poprawnie');
-        // })
+        this.toastr.success('Oferta została zapisana poprawnie');
       },
       (errorResp) => {
         this.toastr.error(errorResp.error.errorMessage ? errorResp.error.errorMessage : 'Coś poszło nie tak.')
       })
-  }
-
-  throwError(meesage) {
-    this.router.navigate(['/offers']).then(() => {
-      this.toastr.error(meesage);
-    });
-    return false;
   }
 
 

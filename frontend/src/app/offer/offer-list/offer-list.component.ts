@@ -14,9 +14,6 @@ import {Consts} from "../../consts/consts";
 
 export class OfferListComponent implements OnInit {
   consts = Consts;
-  // user: string = sessionStorage.getItem('user');
-  // offer: Offer = null;
-  // public newOffer: Offer = new Offer();
   offerList: Offer[];
 
   constructor(private offerService: OfferService) {

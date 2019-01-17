@@ -3,6 +3,8 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import {OfferService} from '../../services/offer/offer.service';
 import {Offer} from '../../models/offer';
 import {ToastrService} from "ngx-toastr";
+import {OfferHelperService} from "../../utils/offer-helper.service";
+import {subscribeToResult} from "rxjs/util/subscribeToResult";
 
 @Component({
   selector: 'app-user-offers',
@@ -10,13 +12,18 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./offer-user.component.css']
 })
 
-export class OfferUserComponent implements OnInit {
+export class OfferUserComponent implements OnInit{
 
   offerList: Offer[];
   id: string;
   @Input() public offerID;
 
-  constructor(private offerService: OfferService, private route: ActivatedRoute, private toastr: ToastrService) {
+  constructor(private offerService: OfferService,
+              private route: ActivatedRoute,
+              private toastr: ToastrService,
+              private offerServiceHelper: OfferHelperService,
+
+  ) {
   }
 
   ngOnInit() {
@@ -31,15 +38,10 @@ export class OfferUserComponent implements OnInit {
   }
 
   onDeleteOffer(offerID) {
-    if (confirm("Czy na pewno chcesz usunąć ofertę?")) {
-      this.offerService.deleteOffer(offerID).subscribe((resp: any) => {
-          this.toastr.success('Oferta została usunięta');
-          this.ngOnInit();
-        },
-        (errorResp) => {
-          this.toastr.error('Nie udało się usunąc oferty');
-        })
-    }
+    this.offerServiceHelper.onDeleteOffer(offerID);
+    this.ngOnInit();
   }
+
+
 
 }

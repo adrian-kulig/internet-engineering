@@ -120,4 +120,8 @@ export class AuthService {
     AuthService.SessionStorageManager.removeKey('user');
   }
 
+  public static getLoggedInUser(){
+    return (AuthService.SessionStorageManager.getValue('user')) ? AuthService.SessionStorageManager.getValue('user') : null;
+  }
+
 }

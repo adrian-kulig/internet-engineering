@@ -2,7 +2,10 @@ import {Component, OnInit, Input} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {OfferService} from '../../services/offer/offer.service';
 import {Offer} from '../../models/offer';
-import { User } from '../../models/user';
+import {User} from '../../models/user';
+import {Consts} from "../../consts/consts";
+import {ToastrService} from "ngx-toastr";
+import {OfferHelperService} from "../../utils/offer-helper.service";
 
 @Component({
   selector: 'app-offer-item',
@@ -12,12 +15,15 @@ import { User } from '../../models/user';
 
 export class OfferItemComponent implements OnInit {
 
-  // user: string = sessionStorage.getItem('user');
   offer: Offer = null;
-  // comments: Comments = [];
-  id : string;
+  Consts = Consts;
+  id: string;
 
-  constructor(private offerService: OfferService, private route: ActivatedRoute) {
+  constructor(private offerService: OfferService,
+              private route: ActivatedRoute,
+              private toastr: ToastrService,
+              private offerServiceHelper: OfferHelperService,
+  ) {
   }
 
   ngOnInit() {
@@ -31,5 +37,10 @@ export class OfferItemComponent implements OnInit {
     );
   }
 
+
+  onDeleteOffer(offerID) {
+    this.offerServiceHelper.onDeleteOffer(offerID);
+    this.ngOnInit();
+  }
 
 }
