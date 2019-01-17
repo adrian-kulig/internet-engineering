@@ -49,11 +49,10 @@ export class CommentCreateComponent implements OnInit {
 
 
   createOfferAction(comment: Comments) {
-    console.log(comment);
 
     this.commentService.createComment(comment).subscribe((resp: any) => {
         // this.router.navigate([Consts.Comment.URL+'/offer/'+]).then(() => {
-          this.toastr.success('Oferta została zapisana poprawnie');
+          this.toastr.success('Komentarz został dodany ');
         // })
       },
       (errorResp) => {

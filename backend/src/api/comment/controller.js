@@ -1,19 +1,19 @@
-const { success, notFound } = require('../../services/response/')
+const { success, notFound } = require('../../services/response/');
 const validationHelpers = require('../../helpers/helpers');
-const Comment = require('./model').model
+const Comment = require('./model').model;
 
 const create = ({ body }, res, next) => {
     Comment.create(body)
         .then((comment) => comment.view(true))
         .then(success(res, 201))
-        .catch(next);
-}
+        .catch((err) => validationHelpers.customValidation(res, err, next))
+};
 
 const index = ({ query }, res, next) =>
   Comment.find()
     .then((comments) => comments.map((comment) => comment.view()))
     .then(success(res))
-    .catch(next)
+    .catch(next);
 
 const show = ({params}, res, next) => {
     Comment.findById(params.id)
@@ -21,7 +21,7 @@ const show = ({params}, res, next) => {
         .then((comment) => comment ? comment.view(true) : null)
         .then(success(res))
         .catch(next)
-}
+};
 
 const update = ({ body, params }, res, next) =>
   Comment.findById(params.id)
@@ -29,15 +29,15 @@ const update = ({ body, params }, res, next) =>
     .then((comment) => comment? Object.assign(comment, body).save() : null)
     .then((comment) => comment ? comment.view(true) : null)
     .then(success(res))
-    .catch(next)
+    .catch(next);
 
 const destroy = ({ params }, res, next) =>
   Comment.findById(params.id)
     .then(notFound(res))
     .then((comment) => comment ? comment.remove() : null)
     .then(success(res, 204))
-    .catch(next)
+    .catch(next);
 
 module.exports = {
     create, index, show, update, destroy
-}
+};

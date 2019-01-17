@@ -11,7 +11,7 @@ export class CommentService {
   constructor(private http: HttpClient) { }
 
   createComment(comment: Comments): Observable<Comments> {
-    return this.http.post<Comments>(Consts.Api.ROOT + Consts.Comment.CREATE_URL, Comments, AuthService.authorizationHeaders);
+    return this.http.post<Comments>(Consts.Api.ROOT + Consts.Comment.CREATE_URL, comment, AuthService.authorizationHeaders);
   }
 
   getCommentById(id: string): Observable<Comments> {
