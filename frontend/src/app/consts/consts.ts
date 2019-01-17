@@ -18,5 +18,12 @@ export class Consts{
     static LOGOUT = '/logout';
     static OAUTH = "/oauth";
     static REGISTER = '/register'
+  };
+  static Comment = class {
+    static URL = "/comments";
+    static TITLE = "Komentarze";
+    static CREATE_URL = "/comments/create";
+    static EDIT_URL = "/comments/edit";
+    static OFFER_Comment_LIST = "/comments/offer"
   }
 }

@@ -8,6 +8,7 @@ const {sign} = require('./services/jwt')
 // const {verifyToken} = require('./services/jwt');
 const offers = require('./api/offer');
 const users = require('./api/user');
+const comments = require('./api/comment');
 
 /**
  * Creating a new express app
@@ -146,6 +147,7 @@ app.post('/api/logout', (req, res) => {
 // app.get('/api/balance', authMiddleware, (req, res) => {});
 app.use('/api/offers', offers);
 app.use('/api/users', users);
+app.use('/api/comments', comments);
 
 /**
  * Listen on port 3000

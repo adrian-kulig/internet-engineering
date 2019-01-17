@@ -22,6 +22,11 @@ import {OfferListComponent} from "./offer/offer-list/offer-list.component";
 import {OfferUserComponent} from "./offer/offer-user/offer-user.component";
 import {OfferEditComponent} from "./offer/offer-edit/offer-edit.component";
 import {TruncatePipe} from "./helpers/truncate-pipe";
+import { CommentService } from './services/comment/comment.service';
+import { CommentItemComponent } from './comment/comment-item/comment-item.component';
+import { CommentOfferComponent } from './comment/comment-offer/comment-offer.component';
+import { CommentEditComponent } from './comment/comment-edit/comment-edit.component';
+import { CommentCreateComponent } from './comment/comment-create/comment-create.component';
 
 
 
@@ -41,7 +46,11 @@ import {TruncatePipe} from "./helpers/truncate-pipe";
     OfferEditComponent,
     CustomButtonComponent,
     RegisterComponent,
-    TruncatePipe
+    TruncatePipe,
+    CommentCreateComponent,
+    CommentItemComponent,
+    CommentOfferComponent,
+    CommentEditComponent
 
   ],
   imports: [
@@ -55,7 +64,8 @@ import {TruncatePipe} from "./helpers/truncate-pipe";
   providers: [
     AuthService,
     OfferService,
-    UserService
+    UserService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })
