@@ -37,7 +37,6 @@ export class OfferItemComponent implements OnInit {
     );
   }
 
-
   onDeleteOffer(offerID) {
     this.offerServiceHelper.onDeleteOffer(offerID);
     this.ngOnInit();

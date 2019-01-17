@@ -31,6 +31,7 @@ import { CommentCreateComponent } from './comment/comment-create/comment-create.
 
 
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +67,7 @@ import { CommentCreateComponent } from './comment/comment-create/comment-create.
     AuthService,
     OfferService,
     UserService,
-    OfferHelperService
+    OfferHelperService,
     CommentService
   ],
   bootstrap: [AppComponent]
