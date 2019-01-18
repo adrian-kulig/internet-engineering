@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerAction() {
-    this.authService.registerAction(this.user.name, this.user.email, this.user.password);
+    this.authService.registerAction(this.user.name, this.user.lastName, this.user.email, this.user.password);
   }
 
 }

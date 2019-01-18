@@ -5,6 +5,7 @@ import {Offer} from '../../models/offer';
 import {ToastrService} from "ngx-toastr";
 import {OfferHelperService} from "../../utils/offer-helper.service";
 import {subscribeToResult} from "rxjs/util/subscribeToResult";
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-user-offers',
@@ -13,7 +14,7 @@ import {subscribeToResult} from "rxjs/util/subscribeToResult";
 })
 
 export class OfferUserComponent implements OnInit{
-
+  loggedUser = AuthService.getLoggedInUser();
   offerList: Offer[];
   id: string;
   @Input() public offerID;

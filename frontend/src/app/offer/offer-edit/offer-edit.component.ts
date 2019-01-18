@@ -7,6 +7,7 @@ import {AuthService} from "../../services/auth/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Consts} from "../../consts/consts";
 import {OfferHelperService} from "../../utils/offer-helper.service";
+import {CommonHelper} from "../../utils/common";
 
 @Component({
   selector: 'app-offer-edit',
@@ -16,6 +17,7 @@ import {OfferHelperService} from "../../utils/offer-helper.service";
 
 export class OfferEditComponent implements OnInit {
 
+  consts = Consts;
   id: string = null;
   offer: Offer = null;
 
@@ -25,6 +27,7 @@ export class OfferEditComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private offerServiceHelper: OfferHelperService,
+              private commonHelper: CommonHelper,
   ) {
     this.route.params.subscribe(params => {
       this.id = params.id;
@@ -52,7 +55,7 @@ export class OfferEditComponent implements OnInit {
 
   editOfferAction(offer: Offer) {
     this.offerService.editOffer(this.id, offer).subscribe((resp: any) => {
-        this.toastr.success('Oferta została zapisana poprawnie');
+      this.commonHelper.redirect(Consts.Offer.URL + '/' + offer.id, 'success','Oferta została zapisana poprawnie');
       },
       (errorResp) => {
         this.toastr.error(errorResp.error.errorMessage ? errorResp.error.errorMessage : 'Coś poszło nie tak.')

@@ -7,7 +7,7 @@ const catchDuplicateEmail = (res, err, next) => {
     } else {
         next(err)
     }
-}
+};
 
 const customValidation = (res, err, next) => {
     if (err.name === 'ValidationError') {
@@ -16,16 +16,23 @@ const customValidation = (res, err, next) => {
 
         Object.keys(errors).forEach(function (key) {
             errorMessages.push(errors[key].message);
-        })
+        });
 
         res.status(403).send({
             errorMessage: parseErrorMessages(errorMessages)
         });
 
-    } else {
+    }
+    else if (err.name === 'MongoError' && err.code === 11000) {
+        res.status(403).send({
+            errors: ['email already registered'],
+            errorMessage: 'Taki adres email już istnieje!'
+        });
+    }
+    else {
         next(err)
     }
-}
+};
 
 const parseErrorMessages = (errorMessages) => {
     if (!errorMessages.length) {
@@ -42,8 +49,8 @@ const parseErrorMessages = (errorMessages) => {
     }
 
     return errorMessageString;
-}
+};
 
 module.exports = {
     catchDuplicateEmail, customValidation
-}
+};

@@ -19,20 +19,25 @@
                  src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
             <div class="comment-body">
               <div class="g-mb-15">
-                <div class="comment--actions">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="comments/edit/{{comment.id}}">Edytuj</a>
-                      <a class="dropdown-item" (click)="onDeleteComment(comment.id)">Usuń</a>
+
+                <div *ngIf="comment.user.id == loggedUser.id">
+                  <div class="comment--actions">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="comments/edit/{{comment.id}}">Edytuj</a>
+                        <a class="dropdown-item" (click)="onDeleteComment(comment.id)">Usuń</a>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+
                 <h5 class="comment-author">{{comment.user.name}} {{comment.user.lastName}}</h5>
-                <span class="comment-date">{{comment.createdAt | date:'EEE, d MMM y'}}</span>
+                <span class="comment-date">{{comment.createdAt | timeAgo}}</span>
               </div>
               <p>{{comment.content}}</p>
             </div>

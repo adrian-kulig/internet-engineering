@@ -8,6 +8,7 @@ import { CommentService } from '../../services/comment/comment.service';
 import { Comments } from '../../models/comments';
 import { Offer } from '../../models/offer';
 import {OfferHelperService} from "../../utils/offer-helper.service";
+import {CommonHelper} from "../../utils/common";
 
 
 @Component({
@@ -16,7 +17,7 @@ import {OfferHelperService} from "../../utils/offer-helper.service";
   styleUrls: ['./comment-create.component.scss']
 })
 export class CommentCreateComponent implements OnInit {
-
+  consts = Consts;
   offer: Offer = null;
   comment: Comments = null;
   id: string;
@@ -27,7 +28,8 @@ export class CommentCreateComponent implements OnInit {
               private commentService: CommentService,
               private toastr: ToastrService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private commonHelper: CommonHelper) {
   }
 
   ngOnInit() {

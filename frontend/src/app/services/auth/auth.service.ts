@@ -90,9 +90,10 @@ export class AuthService {
     });
   }
 
-  registerAction(name: string, email: string, password: string) {
+  registerAction(name: string, lastName: string, email: string, password: string) {
     this.http.post(Consts.Api.ROOT + '/users', {
       name: name,
+      lastName: lastName,
       email: email,
       password: password,
       role: ["user"]

@@ -15,6 +15,7 @@ import { CommentHelperService } from '../../utils/comment-helper.service';
 })
 export class CommentOfferComponent implements OnInit {
 
+  loggedUser = AuthService.getLoggedInUser();
   comments: Comments[];
 
   id: string = null;

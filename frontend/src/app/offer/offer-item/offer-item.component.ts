@@ -6,6 +6,7 @@ import {User} from '../../models/user';
 import {Consts} from "../../consts/consts";
 import {ToastrService} from "ngx-toastr";
 import {OfferHelperService} from "../../utils/offer-helper.service";
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-offer-item',
@@ -15,7 +16,7 @@ import {OfferHelperService} from "../../utils/offer-helper.service";
 
 
 export class OfferItemComponent implements OnInit {
-
+  loggedUser = AuthService.getLoggedInUser();
   offer: Offer = null;
   Consts = Consts;
   id: string;

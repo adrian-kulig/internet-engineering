@@ -28,6 +28,8 @@ import { CommentOfferComponent } from './comment/comment-offer/comment-offer.com
 import { CommentEditComponent } from './comment/comment-edit/comment-edit.component';
 import { CommentCreateComponent } from './comment/comment-create/comment-create.component';
 import { CommentHelperService } from './utils/comment-helper.service';
+import {TimeAgoPipe} from "time-ago-pipe";
+import {CommonHelper} from "./utils/common";
 
 
 
@@ -51,7 +53,8 @@ import { CommentHelperService } from './utils/comment-helper.service';
     TruncatePipe,
     CommentCreateComponent,
     CommentOfferComponent,
-    CommentEditComponent
+    CommentEditComponent,
+    TimeAgoPipe,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,8 @@ import { CommentHelperService } from './utils/comment-helper.service';
     UserService,
     OfferHelperService,
     CommentService,
-    CommentHelperService
+    CommentHelperService,
+    CommonHelper
   ],
   bootstrap: [AppComponent]
 })
