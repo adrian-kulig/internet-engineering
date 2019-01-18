@@ -16,9 +16,8 @@ const index = ({ query }, res, next) =>
     .catch(next);
 
 const show = ({params}, res, next) => {
-    Comment.findById(params.id)
-        .then(notFound(res))
-        .then((comment) => comment ? comment.view(true) : null)
+    Comment.find({"offer.id": params.id})
+        .then((comments) => comments.map((comment) => comment.view()))
         .then(success(res))
         .catch(next)
 };

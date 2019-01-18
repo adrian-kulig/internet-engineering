@@ -9,7 +9,7 @@ app.post('/create', token({required: true}), create)
 
 app.get('/', index)
 
-app.get('/:id', show)
+app.get('/offer/:id', show)
 
 app.put('/:id',  token({required: true}), update)
 

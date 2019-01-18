@@ -20,12 +20,12 @@ export class CommentService {
     return this.http.get<Comments>(Consts.Api.ROOT + Consts.Comment.URL + "/" + id);
   }
 
-  getOfferComments(id): Observable<Comments[]> {
+  getOfferComments(id: string): Observable<Comments[]> {
     return this.http.get<Comments[]>(Consts.Api.ROOT + Consts.Comment.OFFER_Comment_LIST + '/' + id);
   }
 
   editComment(id: string, comment: Comments): Observable<Comments> {
-    return this.http.put<Comments>(Consts.Api.ROOT + Consts.Comment.EDIT_URL + '/' + id, Comments, AuthService.authorizationHeaders);
+    return this.http.put<Comments>(Consts.Api.ROOT + Consts.Comment.EDIT_URL + '/' + id, comment, AuthService.authorizationHeaders);
   }
 
   deleteComment(id: string): Observable<Comments> {
