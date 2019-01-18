@@ -15,10 +15,10 @@
         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">{{consts.Offer.TITLE}}</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" routerLink="{{consts.Offer.URL}}">Wszystkie oferty</a>
-          <a class="dropdown-item" routerLink="{{consts.Offer.CREATE_URL}}">Dodaj ofertę</a>
+          <a class="dropdown-item" routerLink="{{consts.Offer.URL}}">All offers</a>
+          <a class="dropdown-item" routerLink="{{consts.Offer.CREATE_URL}}">Add offer</a>
           <div *ngIf="loggedUser"><a class="dropdown-item"
-                                     routerLink="{{consts.Offer.USER_OFFER_LIST}}/{{loggedUser.id}}">Moje oferty</a>
+                                     routerLink="{{consts.Offer.USER_OFFER_LIST}}/{{loggedUser.id}}">My offers</a>
           </div>
         </div>
       </li>
@@ -27,10 +27,7 @@
 
   <div *ngIf="loggedUser" class="logged-in">
     <button class="btn btn-outline-success" (click)="doLogout()">
-      Wyloguj się
+      Log out
     </button>
   </div>
-
-  <!--<login></login>-->
-  <!--<register></register>-->
 </nav>

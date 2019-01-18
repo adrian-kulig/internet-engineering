@@ -4,14 +4,14 @@ export class Consts{
   };
   static Offer = class {
     static URL = "/offers";
-    static TITLE = "Oferty";
+    static TITLE = "Offers";
     static CREATE_URL = "/offers/create";
     static EDIT_URL = "/offers/edit";
     static USER_OFFER_LIST = "/offers/user"
   };
   static User = class {
     static URL = "/users";
-    static TITLE = "Użytkownicy";
+    static TITLE = "Users";
   };
   static Oauth = class{
     static LOGIN = '/login';
@@ -21,7 +21,7 @@ export class Consts{
   };
   static Comment = class {
     static URL = "/comments";
-    static TITLE = "Komentarze";
+    static TITLE = "Comments";
     static CREATE_URL = "/comments/create";
     static EDIT_URL = "/comments/edit";
     static OFFER_Comment_LIST = "/comments/offer"

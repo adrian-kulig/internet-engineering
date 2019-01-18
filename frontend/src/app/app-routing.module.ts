@@ -61,7 +61,7 @@ const routes: Route[] = [
   },
 
   /**
-   * UŻYTKOWNICY
+   * USERS
    */
   {
     path: 'users',
@@ -69,7 +69,7 @@ const routes: Route[] = [
   },
 
   /**
-   * REJESTRACJA
+   * REGISTRATION
    */
   {
     path: 'register',

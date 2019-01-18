@@ -22,3 +22,11 @@
 .comments-section{
   margin-top: 50px;
 }
+
+.all-user-button {
+  float: left;
+}
+
+.crud-buttons {
+  float: right;
+}
