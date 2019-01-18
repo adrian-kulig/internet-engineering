@@ -1,18 +1,20 @@
-const {Router} = require('express')
-const {create, index, show, update, destroy, userListOffers} = require('./controller')
-const {token, password} = require('../../services/passport')
+const {Router} = require('express');
+const {create, index, show, update, destroy, singleComment} = require('./controller');
+const {token, password} = require('../../services/passport');
 
 const app = new Router();
 
 // User has to be logged in to create an offer
-app.post('/create', token({required: true}), create)
+app.post('/create', token({required: true}), create);
 
-app.get('/', index)
+app.get('/', index);
 
-app.get('/offer/:id', show)
+app.get('/offer/:id', show);
 
-app.put('/:id',  token({required: true}), update)
+app.get('/:id', singleComment);
 
-app.delete('/:id',  token({required: true}), destroy)
+app.put('/edit/:id',  token({required: true}), update);
 
-module.exports = app
+app.delete('/:id',  token({required: true}), destroy);
+
+module.exports = app;

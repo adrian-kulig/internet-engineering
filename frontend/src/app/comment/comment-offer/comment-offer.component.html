@@ -26,15 +26,14 @@
                       <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Edytuj</a>
-                      <a class="dropdown-item" href="#">Usuń</a>
+                      <a class="dropdown-item" href="comments/edit/{{comment.id}}">Edytuj</a>
+                      <a class="dropdown-item" (click)="onDeleteComment(comment.id)">Usuń</a>
                     </div>
                   </div>
                 </div>
                 <h5 class="comment-author">{{comment.user.name}} {{comment.user.lastName}}</h5>
                 <span class="comment-date">{{comment.createdAt | date:'EEE, d MMM y'}}</span>
               </div>
-
               <p>{{comment.content}}</p>
             </div>
           </div>

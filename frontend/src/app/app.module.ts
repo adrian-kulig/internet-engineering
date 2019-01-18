@@ -24,10 +24,10 @@ import {OfferEditComponent} from "./offer/offer-edit/offer-edit.component";
 import {TruncatePipe} from "./helpers/truncate-pipe";
 import {OfferHelperService} from "./utils/offer-helper.service";
 import { CommentService } from './services/comment/comment.service';
-import { CommentItemComponent } from './comment/comment-item/comment-item.component';
 import { CommentOfferComponent } from './comment/comment-offer/comment-offer.component';
 import { CommentEditComponent } from './comment/comment-edit/comment-edit.component';
 import { CommentCreateComponent } from './comment/comment-create/comment-create.component';
+import { CommentHelperService } from './utils/comment-helper.service';
 
 
 
@@ -50,10 +50,8 @@ import { CommentCreateComponent } from './comment/comment-create/comment-create.
     RegisterComponent,
     TruncatePipe,
     CommentCreateComponent,
-    CommentItemComponent,
     CommentOfferComponent,
     CommentEditComponent
-
   ],
   imports: [
     BrowserModule,
@@ -68,7 +66,8 @@ import { CommentCreateComponent } from './comment/comment-create/comment-create.
     OfferService,
     UserService,
     OfferHelperService,
-    CommentService
+    CommentService,
+    CommentHelperService
   ],
   bootstrap: [AppComponent]
 })
