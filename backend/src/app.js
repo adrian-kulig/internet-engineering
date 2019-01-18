@@ -2,9 +2,9 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const mongoose = require('./services/mongoose')
+const mongoose = require('./services/mongoose');
 const User = require('./api/user/model').model;
-const {sign} = require('./services/jwt')
+const {sign} = require('./services/jwt');
 // const {verifyToken} = require('./services/jwt');
 const offers = require('./api/offer');
 const users = require('./api/user');
@@ -42,13 +42,13 @@ app.use(session({
 /**
  * Setup database -- mongose
  */
-const password = process.env.PASSWORD
-const dbURI = `mongodb+srv://projectieUser:${password}@projectie-794rj.mongodb.net/test?retryWrites=true`
+const password = process.env.PASSWORD;
+const dbURI = `mongodb+srv://projectieUser:${password}@projectie-794rj.mongodb.net/test?retryWrites=true`;
 
 const options = {
     useNewUrlParser: true,
     dbName: "ieProject"
-}
+};
 mongoose.connect(dbURI, options).then(
     () => {
         console.log("Database connection established!");
@@ -152,7 +152,7 @@ app.use('/api/comments', comments);
 /**
  * Listen on port 3000
  */
-app.listen(3001, () => {
+app.listen(3000, () => {
     console.log('Server listening on port 3000')
 });
 

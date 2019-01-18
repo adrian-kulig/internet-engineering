@@ -27,7 +27,9 @@ commentSchema.methods = {
             id: this._id,
             content: this.content,
             offer: this.offer,
-            user: this.user
+            user: this.user,
+            createdAt: this.createdAt,
+            updatedAt: this.updatedAt
         };
 
         return full ? {

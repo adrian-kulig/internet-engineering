@@ -7,6 +7,7 @@ import { Consts } from '../../consts/consts';
 import { CommentService } from '../../services/comment/comment.service';
 import { Comments } from '../../models/comments';
 import { Offer } from '../../models/offer';
+import {OfferHelperService} from "../../utils/offer-helper.service";
 
 
 @Component({
@@ -50,14 +51,15 @@ export class CommentCreateComponent implements OnInit {
 
   createOfferAction(comment: Comments) {
 
-    this.commentService.createComment(comment).subscribe((resp: any) => {
-        // this.router.navigate([Consts.Comment.URL+'/offer/'+]).then(() => {
-          this.toastr.success('Komentarz został dodany ');
-        // })
-      },
-      (errorResp) => {
-        this.toastr.error(errorResp.error.errorMessage ? errorResp.error.errorMessage : 'Coś poszło nie tak.')
-      })
+      this.commentService.createComment(comment).subscribe((resp: any) => {
+          location.reload();
+          // this.router.navigate([Consts.Offer.URL+'/'+ this.id]).then(() => {
+          //   this.toastr.success('Komentarz został dodany ');
+          // })
+        },
+        (errorResp) => {
+          this.toastr.error(errorResp.error.errorMessage ? errorResp.error.errorMessage : 'Coś poszło nie tak.')
+        })
   }
 
 

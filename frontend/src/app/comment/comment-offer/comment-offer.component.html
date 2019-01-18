@@ -1,7 +1,53 @@
-{{comments | json}}
-<ul>
-  <li *ngFor="let c of comments">
-    <h1></h1>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="pill" href="#comments">Comments</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="pill" href="#create-comment">Add comment</a>
   </li>
 </ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane container active comments-content" id="comments">
+    <div class="row">
+      <div *ngIf="comments && comments.length>0">
+
+        <div class="col-md-12 comment-item" *ngFor="let comment of comments">
+          <div class="media g-mb-30 media-comment">
+            <img class="d-flex user-avatar rounded-circle align-self-center"
+                 src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
+            <div class="comment-body">
+              <div class="g-mb-15">
+                <div class="comment--actions">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Edytuj</a>
+                      <a class="dropdown-item" href="#">Usuń</a>
+                    </div>
+                  </div>
+                </div>
+                <h5 class="comment-author">{{comment.user.name}} {{comment.user.lastName}}</h5>
+                <span class="comment-date">{{comment.createdAt | date:'EEE, d MMM y'}}</span>
+              </div>
+
+              <p>{{comment.content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="tab-pane container fade" id="create-comment">
+    <div class="create-comment-content">
+      <app-comment-create></app-comment-create>
+    </div>
+  </div>
+</div>
+
 

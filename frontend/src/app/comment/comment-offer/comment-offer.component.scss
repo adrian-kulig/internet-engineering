@@ -1,0 +1,38 @@
+.comments-content, .create-comment-content{
+  padding: 20px 30px;
+  background: rgba(212, 212, 212, 0.57);
+}
+
+.comment-item{
+  background:#ebebeb;
+  margin-bottom: 20px;
+  display: flex;
+  box-shadow: 0 5px 10px -6px rgba(0, 0, 0, 0.15);
+
+  &:last-child{
+    margin-bottom: 0;
+  }
+
+  .user-avatar{
+    max-width: 50px;
+    max-height: 50px;
+  }
+  .comment-body{
+    padding:10px;
+  }
+  .comment-date{
+    font-size: 12px;
+    color: #5d5d5d;
+  }
+  .comment-author{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+}
+
+.comment--actions{
+  position: absolute;
+  top: 0;
+  right: 0;
+}

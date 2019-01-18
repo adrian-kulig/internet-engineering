@@ -1,13 +1,11 @@
-<div class="container">
-  <form #createComment="ngForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="commentContent">Kontent</label>
-      <textarea ngModel required #commentContent="ngModel" name="commentContent" id="commentContent"
-                class="form-control" type="text" placeholder="Comment Description"
-                [(ngModel)]="newComment.content"></textarea>
-    </div>
-    <button type="submit" class="btn btn-success">
-      Opublikuj komentarz
-    </button>
-  </form>
-</div>
+<form #createComment="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="commentContent">Treść komentarza</label>
+    <textarea ngModel required #commentContent="ngModel" name="commentContent" id="commentContent"
+              class="form-control" type="text" placeholder="Comment Description" rows="6"
+              [(ngModel)]="newComment.content"></textarea>
+  </div>
+  <button type="submit" class="btn btn-secondary">
+    Opublikuj komentarz
+  </button>
+</form>

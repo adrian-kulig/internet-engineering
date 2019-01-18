@@ -13,6 +13,7 @@ import {OfferHelperService} from "../../utils/offer-helper.service";
   styleUrls: ['./offer-item.component.css']
 })
 
+
 export class OfferItemComponent implements OnInit {
 
   offer: Offer = null;
@@ -45,5 +46,6 @@ export class OfferItemComponent implements OnInit {
     this.offerServiceHelper.onDeleteOffer(offerID);
     this.ngOnInit();
   }
+
 
 }
