@@ -15,6 +15,15 @@ const index = ({ query }, res, next) =>
     .then(success(res))
     .catch(next);
 
+const singleComment = ({params}, res, next) => {
+    Comment.findById(params.id)
+        .then(notFound(res))
+        .then((comment) => comment ? comment.view(true) : null)
+        .then(success(res))
+        .catch(next)
+};
+
+
 const show = ({params}, res, next) => {
     Comment.find({"offer.id": params.id})
         .then((comments) => comments.map((comment) => comment.view()))
@@ -38,5 +47,5 @@ const destroy = ({ params }, res, next) =>
     .catch(next);
 
 module.exports = {
-    create, index, show, update, destroy
+    create, index, show, update, destroy, singleComment
 };

@@ -12,7 +12,6 @@ import {RegisterComponent} from "./register/register.component";
 import { CommentCreateComponent } from "./comment/comment-create/comment-create.component";
 import { CommentEditComponent } from "./comment/comment-edit/comment-edit.component";
 import { CommentOfferComponent } from "./comment/comment-offer/comment-offer.component";
-import { CommentItemComponent } from "./comment/comment-item/comment-item.component";
 
 
 const routes: Route[] = [
@@ -59,10 +58,6 @@ const routes: Route[] = [
   {
     path: 'comments/offer/:id',
     component: CommentOfferComponent,
-  },
-  {
-    path: 'comments/:id',
-    component: CommentItemComponent,
   },
 
   /**

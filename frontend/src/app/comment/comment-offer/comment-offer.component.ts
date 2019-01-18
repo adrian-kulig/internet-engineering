@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CommentService } from '../../services/comment/comment.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { Comments } from '../../models/comments';
+import { CommentHelperService } from '../../utils/comment-helper.service';
 
 @Component({
   selector: 'app-comment-offer',
@@ -24,7 +25,8 @@ export class CommentOfferComponent implements OnInit {
               private toastr: ToastrService,
               private router: Router,
               private route: ActivatedRoute,
-              private commentService: CommentService) {
+              private commentService: CommentService,
+              private commentHelper: CommentHelperService) {
 
         this.route.params.subscribe(params => {
           this.id = params.id;
@@ -36,8 +38,8 @@ export class CommentOfferComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params.id; // --> Name must match wanted parameter
     });
-
     this.getAllCommentsAction();
+
   }
 
   getAllCommentsAction() {
@@ -46,4 +48,14 @@ export class CommentOfferComponent implements OnInit {
     );
   }
 
+   onDeleteComment(commentID) {
+    this.commentHelper.onDeleteComment(commentID);
+    this.ngOnInit();
+    this.reload();
+  }
+
+  reload() {
+    window.location.reload();
+    this.commentHelper.redirect("/offers/" + this.id)
+  }
 }

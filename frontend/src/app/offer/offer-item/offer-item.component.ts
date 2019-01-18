@@ -47,5 +47,4 @@ export class OfferItemComponent implements OnInit {
     this.ngOnInit();
   }
 
-
 }
