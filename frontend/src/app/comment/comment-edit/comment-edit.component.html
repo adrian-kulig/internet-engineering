@@ -1,3 +1,11 @@
-<p>
-  comment-edit works!
-</p>
+<form #editComment="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="commentContent">Treść komentarza</label>
+    <textarea ngModel required #commentContent="ngModel" name="commentContent" id="commentContent"
+              class="form-control" type="text" placeholder="Comment Description" rows="6"
+              [(ngModel)]="comment.content"></textarea>
+  </div>
+  <button type="submit" class="btn btn-secondary">
+    Edytuj komentarz
+  </button>
+</form>

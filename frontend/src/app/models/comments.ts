@@ -4,7 +4,7 @@ import { User } from './user';
 import { AuthService } from '../services/auth/auth.service';
 
 export class Comments {
-  id: String;
+  id: string;
   content: String;
   offer: Offer;
   user: User;
