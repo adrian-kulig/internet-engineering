@@ -10,6 +10,23 @@
                     aria-expanded="true" [attr.aria-controls]="'collapse-'+o.id">
               {{o.name}}
             </button>
+
+            <div *ngIf="o.user.id == loggedUser.id" class="float-right">
+              <div class="comment--actions">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/offers/edit/{{o.id}}">Edytuj</a>
+                    <a class="dropdown-item" (click)="onDeleteOffer(o.id)">Usuń</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
           </h5>
         </div>
 
@@ -24,11 +41,8 @@
 
 
             <div class="clearfix"></div>
-            <div class="actions">
-              <a class="btn btn-primary float-left" href="/offers/{{o.id}}">Zobacz więcej</a>
-              <a class="btn btn-danger float-right" (click)="onDeleteOffer(o.id)">Usuń ofertę</a>
-              <a class="btn btn-info float-right" href="/offers/edit/{{o.id}}">Edytuj ofertę</a>
-            </div>
+            <a class="btn btn-primary float-left" href="/offers/{{o.id}}">Zobacz więcej</a>
+
 
           </div>
         </div>

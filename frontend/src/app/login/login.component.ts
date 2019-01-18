@@ -17,11 +17,12 @@ export class LoginComponent{
 
   constructor(private authService: AuthService,) {
     this.authService.loggedIn.subscribe(loggedIn => {
-      if(AuthService.SessionStorageManager.getValue('user')){
-        this.userLogged = AuthService.SessionStorageManager.getValue('user');
-      }
       this.user.loggedIn = loggedIn;
     });
+    if(AuthService.SessionStorageManager.getValue('user')){
+      this.userLogged = AuthService.SessionStorageManager.getValue('user');
+      this.user.loggedIn = true;
+    }
   }
 
   doLogin() {

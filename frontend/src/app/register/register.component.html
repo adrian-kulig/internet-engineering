@@ -11,7 +11,7 @@
 
             <div class="register-component">
               <form class="col px-lg-6 px-xl-8 px-xxl-11 py-9 py-lg-4 align-self-center" #registrationForm="ngForm"
-                    (ngSubmit)="registerAction(); registrationForm.reset()" novalidate>
+                    (ngSubmit)="registerAction();" novalidate>
                 <h1>Please sign up</h1>
                 <h5 class="mb-5 text-700">Fill out the form to get started</h5>
 
@@ -20,8 +20,8 @@
                          type="text" placeholder="Name" [(ngModel)]="user.name"><br>
                 </div>
                 <div class="form-group ">
-                  <input ngModel required #name="ngModel" name="email" id="lastName"
-                         class="form-control form-control-lg" type="text" placeholder="Lastname"
+                  <input ngModel required #lastName="ngModel" name="lastName" id="lastName"
+                         class="form-control form-control-lg" type="text" placeholder="lastName"
                          [(ngModel)]="user.lastName"><br>
                 </div>
                 <div class="form-group ">

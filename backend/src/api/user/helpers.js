@@ -7,16 +7,17 @@ const catchDuplicateEmail = (res, err, next) => {
     } else {
         next(err)
     }
-}
+};
 
 const customValidation = (res, err, next) => {
+    console.log(res);
     if (err.name === 'ValidationError') {
         let errors = err.errors;
         let errorMessages = [];
 
         Object.keys(errors).forEach(function (key) {
             errorMessages.push(errors[key].message);
-        })
+        });
 
         res.status(403).send({
             errorMessage: parseErrorMessages(errorMessages)
@@ -25,7 +26,7 @@ const customValidation = (res, err, next) => {
     } else {
         next(err)
     }
-}
+};
 
 const parseErrorMessages = (errorMessages) =>{
     if(!errorMessages.length){
@@ -42,8 +43,8 @@ const parseErrorMessages = (errorMessages) =>{
     }
 
     return errorMessageString;
-}
+};
 
 module.exports = {
     catchDuplicateEmail, customValidation
-}
+};
