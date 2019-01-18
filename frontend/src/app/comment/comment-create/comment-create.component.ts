@@ -31,11 +31,6 @@ export class CommentCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!AuthService.SessionStorageManager.getValue('user')) {
-      this.router.navigate(['/']).then(() => {
-        this.toastr.error('Musisz być zalogowany.');
-      })
-    }
 
     this.route.params.subscribe(params => {
       this.id = params.id; // --> Name must match wanted parameter
@@ -50,16 +45,17 @@ export class CommentCreateComponent implements OnInit {
 
 
   createOfferAction(comment: Comments) {
-
+    if (!AuthService.SessionStorageManager.getValue('user')) {
+        this.toastr.error('Musisz być zalogowany aby komentaować.');
+    }else{
       this.commentService.createComment(comment).subscribe((resp: any) => {
           location.reload();
-          // this.router.navigate([Consts.Offer.URL+'/'+ this.id]).then(() => {
-          //   this.toastr.success('Komentarz został dodany ');
-          // })
         },
         (errorResp) => {
           this.toastr.error(errorResp.error.errorMessage ? errorResp.error.errorMessage : 'Coś poszło nie tak.')
         })
+    }
+
   }
 
 
