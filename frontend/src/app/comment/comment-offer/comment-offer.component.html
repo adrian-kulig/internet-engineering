@@ -10,8 +10,8 @@
 <!-- Tab panes -->
 <div class="tab-content">
   <div class="tab-pane container active comments-content" id="comments">
-    <div class="row">
       <div *ngIf="comments && comments.length>0">
+        <div class="row">
 
         <div class="col-md-12 comment-item" *ngFor="let comment of comments">
           <div class="media g-mb-30 media-comment">
