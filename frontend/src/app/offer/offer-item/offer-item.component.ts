@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {OfferService} from '../../services/offer/offer.service';
 import {Offer} from '../../models/offer';
@@ -7,7 +7,7 @@ import {Consts} from "../../consts/consts";
 import {ToastrService} from "ngx-toastr";
 import {OfferHelperService} from "../../utils/offer-helper.service";
 import {AuthService} from "../../services/auth/auth.service";
-
+import * as jsPDF from 'jspdf';
 @Component({
   selector: 'app-offer-item',
   templateUrl: './offer-item.component.html',
@@ -20,6 +20,8 @@ export class OfferItemComponent implements OnInit {
   offer: Offer = null;
   Consts = Consts;
   id: string;
+
+  @ViewChild('content') content: ElementRef;
 
   constructor(private offerService: OfferService,
               private route: ActivatedRoute,
@@ -46,6 +48,27 @@ export class OfferItemComponent implements OnInit {
   onDeleteOffer(offerID) {
     this.offerServiceHelper.onDeleteOffer(offerID);
     this.ngOnInit();
+  }
+
+  generatePDF(){
+
+    let doc = new jsPDF();
+
+    let specialElementHandlers = {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    };
+
+    let content = this.content.nativeElement;
+
+    doc.fromHTML(content.innerHTML, 15,15,{
+      'width': 190,
+      'elementHandlers' : specialElementHandlers
+    });
+
+    doc.save('test.pdf');
+
   }
 
 }
