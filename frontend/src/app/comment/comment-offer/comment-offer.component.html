@@ -7,6 +7,7 @@
   </li>
 </ul>
 
+
 <!-- Tab panes -->
 <div class="tab-content">
   <div class="tab-pane container active comments-content" id="comments">
@@ -20,7 +21,8 @@
             <div class="comment-body">
               <div class="g-mb-15">
 
-                <div *ngIf="comment.user.id == loggedUser.id">
+                {{loggedUser.role}}
+                <div *ngIf="(loggedUser &&  (comment.user.id == loggedUser.id || loggedUser.role == 'admin'))">
                   <div class="comment--actions">
                     <div class="btn-group">
                       <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"

@@ -13,6 +13,7 @@ app.get('/offer/:id', show);
 
 app.get('/:id', singleComment);
 
+// app.put('/edit/:id',  token({required: true, roles: ['admin']}), update);
 app.put('/edit/:id',  token({required: true}), update);
 
 app.delete('/:id',  token({required: true}), destroy);

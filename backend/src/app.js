@@ -58,7 +58,6 @@ mongoose.connect(dbURI, options).then(
     }
 );
 
-
 /**
  * Simple session example from tutorials point, unrelated to rest of the application.
  */
@@ -92,6 +91,7 @@ const validatePayloadMiddleware = (req, res, next) => {
  * If pw and email match, the user is fetched and stored into the session.
  * Finally the user is returned from the request.
  */
+
 
 app.post('/api/login', validatePayloadMiddleware, (req, res) => {
     User.findOne({email: req.body.email}, function (err, user) {

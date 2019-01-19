@@ -13,6 +13,9 @@ import {AuthService} from "../../services/auth/auth.service";
   styleUrls: ['./offer-user.component.css']
 })
 
+
+
+
 export class OfferUserComponent implements OnInit{
   loggedUser = AuthService.getLoggedInUser();
   offerList: Offer[];

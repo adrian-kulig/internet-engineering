@@ -124,5 +124,8 @@ export class AuthService {
   public static getLoggedInUser(){
     return (AuthService.SessionStorageManager.getValue('user')) ? AuthService.SessionStorageManager.getValue('user') : null;
   }
+  public static isAdmin(){
+    return (AuthService.SessionStorageManager.getValue('user').role == 'admin');
+  }
 
 }

@@ -12,7 +12,7 @@
           <div class="all-user-button">
             <a href="{{Consts.Offer.USER_OFFER_LIST}}/{{offer.user.id}}" class="btn btn-primary">See all offers of {{offer.user.name}}</a>
           </div>
-          <div class="crud-buttons" *ngIf="offer.user.id == loggedUser.id">
+          <div class="crud-buttons" *ngIf="loggedUser && (offer.user.id == loggedUser.id || loggedUser.role == 'admin')">
             <a href="{{Consts.Offer.EDIT_URL}}/{{offer.id}}" class="btn btn-info">Edit</a>
             <a href="{{Consts.Offer.URL}}/{{offer.id}}" class="btn btn-danger"
                (click)="onDeleteOffer(offer.id)">Delete</a>

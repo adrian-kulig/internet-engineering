@@ -39,7 +39,7 @@ export class CommentEditComponent implements OnInit {
     }
     this.commentService.getCommentById(this.id).subscribe(
       data => {
-        if (data.user && data.user.id == AuthService.getLoggedInUser().id) {
+        if (data.user && (data.user.id == AuthService.getLoggedInUser().id  || AuthService.isAdmin())) {
           this.comment = data
         } else {
           this.commonHelper.redirect('/','error', 'Nie możesz edytować tego komentarza');
