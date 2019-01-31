@@ -2,6 +2,7 @@
 
   <div *ngIf="offerList && offerList.length>0;then offers else no_offers"></div>
   <ng-template #offers>
+    <h3 class="card-title">Moje oferty</h3>
     <div id="accordion">
       <div class="card" *ngFor="let o of offerList">
         <div class="card-header" id="heading-{{o.id}}">
@@ -11,7 +12,7 @@
               {{o.name}}
             </button>
 
-            <div *ngIf="o.user.id == loggedUser.id" class="float-right">
+            <div *ngIf="loggedUser && o.user.id == loggedUser.id" class="float-right">
               <div class="comment--actions">
                 <div class="btn-group">
                   <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
@@ -37,7 +38,7 @@
                 Miejsce: {{o.location}}
               </div>
             </div>
-            Opis:{{o.description}}
+            Opis:{{o.description | truncate:300}}
 
 
             <div class="clearfix"></div>

@@ -50,7 +50,7 @@ export class OfferItemComponent implements OnInit {
     this.ngOnInit();
   }
 
-  generatePDF(){
+  generatePDF(offerName){
 
     let doc = new jsPDF();
 
@@ -67,7 +67,7 @@ export class OfferItemComponent implements OnInit {
       'elementHandlers' : specialElementHandlers
     });
 
-    doc.save('test.pdf');
+    doc.save(offerName+'.pdf');
 
   }
 

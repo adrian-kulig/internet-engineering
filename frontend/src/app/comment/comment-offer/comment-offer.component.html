@@ -21,7 +21,6 @@
             <div class="comment-body">
               <div class="g-mb-15">
 
-                {{loggedUser.role}}
                 <div *ngIf="(loggedUser &&  (comment.user.id == loggedUser.id || loggedUser.role == 'admin'))">
                   <div class="comment--actions">
                     <div class="btn-group">

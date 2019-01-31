@@ -11,7 +11,7 @@
              type="text" placeholder="Offer Location" [(ngModel)]="offer.location"/>
       <label for="offerDescription">Opis</label>
       <textarea ngModel required #offerDescription="ngModel" name="offerDescription" id="offerDescription"
-                class="form-control" type="text" placeholder="Offer Description"
+                class="form-control" type="text" placeholder="Offer Description" rows="10"
                 [(ngModel)]="offer.description"></textarea>
     </div>
     <button type="submit" class="btn btn-success">

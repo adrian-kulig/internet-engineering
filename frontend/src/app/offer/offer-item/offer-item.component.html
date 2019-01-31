@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">{{offer.location}}</h5>
-          <p class="card-text">{{offer.description}}</p>
+          <p class="card-text text-left">{{offer.description}}</p>
           <div class="all-user-button">
             <a href="{{Consts.Offer.USER_OFFER_LIST}}/{{offer.user.id}}" class="btn btn-primary">See all offers of {{offer.user.name}}</a>
           </div>
@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <button (click)="generatePDF()">Generate PDF</button>
+      <button class="btn btn-outline-secondary float-right" (click)="generatePDF(offer.name)">Generate PDF</button>
 
       <div class="comments-section">
         <app-comment-offer></app-comment-offer>
