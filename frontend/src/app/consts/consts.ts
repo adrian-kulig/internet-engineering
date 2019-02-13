@@ -1,4 +1,7 @@
 export class Consts{
+  static Server = class {
+    static HOST = 'http://localhost:3000'
+  };
   static Api = class {
      static ROOT = 'http://localhost:3000/api';
   };

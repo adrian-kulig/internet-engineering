@@ -33,8 +33,9 @@ import {CommonHelper} from "./utils/common";
 
 
 //TODO naprawić to chujostwo, zeby nie wyrzucało błedów
-// import {SocketIoConfig} from "ngx-socket-io";
-// const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
+import {Consts} from "./consts/consts";
+const config: SocketIoConfig = { url: Consts.Server.HOST, options: {} };
 
 
 // @ts-ignore
@@ -67,6 +68,8 @@ import {CommonHelper} from "./utils/common";
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
+    SocketIoModule.forRoot(config)
+
   ],
   providers: [
     AuthService,
