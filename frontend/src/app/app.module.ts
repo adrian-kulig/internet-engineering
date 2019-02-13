@@ -32,6 +32,10 @@ import {TimeAgoPipe} from "time-ago-pipe";
 import {CommonHelper} from "./utils/common";
 
 
+//TODO naprawić to chujostwo, zeby nie wyrzucało błedów
+// import {SocketIoConfig} from "ngx-socket-io";
+// const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
 
 // @ts-ignore
 @NgModule({
