@@ -12,6 +12,7 @@ import {RegisterComponent} from "./register/register.component";
 import { CommentCreateComponent } from "./comment/comment-create/comment-create.component";
 import { CommentEditComponent } from "./comment/comment-edit/comment-edit.component";
 import { CommentOfferComponent } from "./comment/comment-offer/comment-offer.component";
+import {ChatComponent} from "./chat/chat.component";
 
 
 const routes: Route[] = [
@@ -66,6 +67,14 @@ const routes: Route[] = [
   {
     path: 'users',
     component: UserComponent
+  },
+
+  /**
+   * CHAT
+   */
+  {
+    path: 'chats',
+    component: ChatComponent
   },
 
   /**

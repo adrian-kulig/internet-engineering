@@ -23,11 +23,11 @@ import {OfferUserComponent} from "./offer/offer-user/offer-user.component";
 import {OfferEditComponent} from "./offer/offer-edit/offer-edit.component";
 import {TruncatePipe} from "./helpers/truncate-pipe";
 import {OfferHelperService} from "./utils/offer-helper.service";
-import { CommentService } from './services/comment/comment.service';
-import { CommentOfferComponent } from './comment/comment-offer/comment-offer.component';
-import { CommentEditComponent } from './comment/comment-edit/comment-edit.component';
-import { CommentCreateComponent } from './comment/comment-create/comment-create.component';
-import { CommentHelperService } from './utils/comment-helper.service';
+import {CommentService} from './services/comment/comment.service';
+import {CommentOfferComponent} from './comment/comment-offer/comment-offer.component';
+import {CommentEditComponent} from './comment/comment-edit/comment-edit.component';
+import {CommentCreateComponent} from './comment/comment-create/comment-create.component';
+import {CommentHelperService} from './utils/comment-helper.service';
 import {TimeAgoPipe} from "time-ago-pipe";
 import {CommonHelper} from "./utils/common";
 
@@ -35,7 +35,10 @@ import {CommonHelper} from "./utils/common";
 //TODO naprawić to chujostwo, zeby nie wyrzucało błedów
 import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
 import {Consts} from "./consts/consts";
-const config: SocketIoConfig = { url: Consts.Server.HOST, options: {} };
+import {ChatComponent} from './chat/chat.component';
+import {ChatService} from "./services/chat/chat.service";
+
+const config: SocketIoConfig = {url: Consts.Server.HOST, options: {}};
 
 
 // @ts-ignore
@@ -60,6 +63,7 @@ const config: SocketIoConfig = { url: Consts.Server.HOST, options: {} };
     CommentOfferComponent,
     CommentEditComponent,
     TimeAgoPipe,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +79,7 @@ const config: SocketIoConfig = { url: Consts.Server.HOST, options: {} };
     AuthService,
     OfferService,
     UserService,
+    ChatService,
     OfferHelperService,
     CommentService,
     CommentHelperService,
