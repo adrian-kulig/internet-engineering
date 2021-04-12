@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 import {Consts} from '../consts/consts';
 import {Offer} from '../models/offer';
-import {OfferService} from "../services/offer/offer.service";
-import {ActivatedRoute, Route, Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
-import {AuthService} from "../services/auth/auth.service";
-import {HttpClientModule} from "@angular/common/http";
+import {OfferService} from '../services/offer/offer.service';
+import {ActivatedRoute, Route, Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {AuthService} from '../services/auth/auth.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @Injectable()
@@ -18,13 +18,13 @@ export class OfferHelperService {
   }
 
   public onDeleteOffer(offerID) {
-    if (confirm("Czy na pewno chcesz usunąć ofertę?")) {
+    if (confirm('Czy na pewno chcesz usunąć ofertę?')) {
       this.offerService.deleteOffer(offerID).subscribe((resp: any) => {
           this.toastr.success('Oferta została usunięta');
         },
         (errorResp) => {
           this.toastr.error('Nie udało się usunąc oferty');
-        })
+        });
     }
   }
 
@@ -38,7 +38,7 @@ export class OfferHelperService {
           this.toastr.success(message);
         }
       }
-    })
+    });
   }
 
 }

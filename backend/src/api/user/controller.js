@@ -24,6 +24,7 @@ const showMe = ({user}, res) =>
 
 
 const create = ({body}, res, next) => {
+    body.role = body.role[0];
     User.create(body)
         .then(user => {
             sign(user)

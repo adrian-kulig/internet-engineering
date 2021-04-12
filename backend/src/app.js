@@ -42,12 +42,14 @@ app.use(session({
 /**
  * Setup database -- mongose
  */
-const password = process.env.PASSWORD;
-const dbURI = `mongodb+srv://projectieUser:${password}@projectie-794rj.mongodb.net/test?retryWrites=true`;
+// const password = process.env.PASSWORD;
+const password = 'yHT9G2';
+const dbURI = `mongodb+srv://projectUser:${password}@cluster0.zzbuz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const options = {
     useNewUrlParser: true,
-    dbName: "ieProject"
+    dbName: "Cluster0",
+    useUnifiedTopology:true
 };
 mongoose.connect(dbURI, options).then(
     () => {

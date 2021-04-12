@@ -1,7 +1,7 @@
 {
-  "name": "IE",
+  "name": "ZTI",
   "version": "0.0.0",
-  "description": "Projekt zaliczeniowy IE",
+  "description": "Projekt zaliczeniowy ZTI",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/adrian-kulig/internet-engineering.git"
   },
-  "author": "Adrian&Damian",
+  "author": "Adrian&Konrad",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^3.0.2",
